@@ -305,16 +305,17 @@ h1{
   color:var(--muted);
   line-height:1.7;
 }
-.main-video{
-  width:100%;
-  border-radius:24px;
-  display:block;
-}
-.video-wrap{
-  position:relative;
-  width:100%;
+.video-wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
 }
 
+.main-video {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
 .sound-guide{
   position:absolute;
   right:20px;
@@ -699,18 +700,14 @@ h1{
   </section>
 <section class="video-section">
   <div class="video-wrap" id="soundWrap">
-    <video
-      id="mainVideo"
-      class="main-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-    >
-      <source src="./moment-film.mp4" type="video/mp4">
-    </video>
-
+    <iframe
+    class="main-video"
+    src="https://www.youtube.com/embed/UUTpGs1Xrwg?autoplay=1&mute=1&loop=1&playlist=UUTpGs1Xrwg&controls=0&rel=0"
+    title="Moment Film"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen>
+</iframe>
   <button class="sound-guide" id="soundBtn" type="button">
   SOUND OFF
 </button>
@@ -1046,39 +1043,7 @@ h1{
     </p>
   </section>
 </main>
-<script>
 
-const video = document.getElementById("mainVideo");
-const soundBtn = document.getElementById("soundBtn");
-
-let soundEnabled = false;
-
-soundBtn.addEventListener("click", async () => {
-
-  soundEnabled = !soundEnabled;
-
-  if(soundEnabled){
-
-    video.muted = false;
-    video.volume = 1;
-
-    try{
-      await video.play();
-    }catch(e){}
-
-    soundBtn.innerHTML = "SOUND ON";
-
-  }else{
-
-    video.muted = true;
-
-    soundBtn.innerHTML = "SOUND OFF";
-
-  }
-
-});
-
-</script>
 <footer class="footer">
 
   <div class="footer-brand">
