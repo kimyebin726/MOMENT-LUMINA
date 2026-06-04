@@ -496,13 +496,105 @@ h1{
   50%{box-shadow:0 0 22px rgba(67,230,208,.9)}
 }
 
-/* ── RESPONSIVE ── */
-@media(max-width:600px){
-  .analysis-card{flex-direction:column}
-  .analysis-media{width:100%;height:180px}
-  .signal-card{padding:18px 14px;gap:14px}
-  .signal-video{width:60px;height:60px}
-  .signal-body h3{font-size:18px}
+/* ── RESPONSIVE · Galaxy S22U (360px+) ── */
+@media(max-width:768px){
+  /* 커서 숨김 (터치) */
+  #cursor,#cursor-ring{display:none}
+  html,body{cursor:auto}
+
+  /* 헤더 */
+  .header{padding:16px 18px}
+  .logo img{width:100px}
+  .header-tag{font-size:8px;letter-spacing:.12em}
+
+  /* 섹션 패딩 */
+  .section{padding:80px 18px 48px}
+  .hero{padding-top:120px;min-height:100svh}
+
+  /* 히어로 링 크기 줄임 */
+  .hero-ring{width:280px;height:280px}
+  .hero-ring::before{width:200px;height:200px}
+
+  /* 히어로 아이브로우 줄바꿈 방지 */
+  .hero-eyebrow{
+    font-size:8px;letter-spacing:.18em;
+    white-space:nowrap;overflow:hidden;
+    text-overflow:ellipsis;
+    max-width:100%;
+  }
+  .hero-eyebrow span{margin:0 4px}
+
+  /* h1 */
+  h1{font-size:clamp(52px,18vw,72px);letter-spacing:-.05em}
+  .h1-sub{font-size:clamp(52px,18vw,72px)}
+
+  /* hero-copy */
+  .hero-copy{font-size:15px;margin-top:20px}
+  .hero-copy span{font-size:11px}
+
+  /* scroll cue */
+  .scroll-cue{margin-top:36px}
+
+  /* 섹션 타이틀 */
+  .section-eyebrow{font-size:8px;letter-spacing:.22em}
+  .section-title{font-size:clamp(24px,8vw,34px);margin-bottom:12px}
+  .section-desc{font-size:13px;margin-bottom:22px}
+  .section-desc small{font-size:11px}
+
+  /* 시그널 카드 */
+  .signal-card{padding:16px 14px;gap:14px}
+  .signal-num{font-size:8px;min-width:18px}
+  .signal-video{width:58px;height:58px;border-radius:10px}
+  .signal-body h3{font-size:17px;margin-bottom:4px}
+  .signal-body p{font-size:12px}
+  .signal-arrow{font-size:15px}
+
+  /* 플로우 */
+  .flow-wrap{padding:20px 16px}
+  .flow-line{left:32px}
+  .flow-step{padding:14px 0 16px 44px}
+  .flow-node{left:22px;width:12px;height:12px}
+  .flow-step small{font-size:8px;letter-spacing:.16em}
+  .flow-step h3{font-size:16px;margin:5px 0 4px}
+  .flow-step p{font-size:12px}
+
+  /* 분석 카드 */
+  .analysis-card{
+    flex-direction:column;
+    padding:18px 16px;
+    margin-bottom:14px;
+    border-radius:16px;
+  }
+  .analysis-media{width:100%;height:160px;border-radius:12px}
+  .analysis-label{font-size:8px;letter-spacing:.2em}
+  .analysis-info h3{font-size:20px;margin-bottom:8px}
+  .analysis-info p{font-size:13px}
+  .analysis-info small{font-size:11px;margin-bottom:14px}
+  .stat-label,.stat-val{font-size:10px}
+
+  /* 인사이트 */
+  .insight-card{padding:20px 18px}
+  .insight-num{font-size:8px;letter-spacing:.18em}
+  .insight-card h3{font-size:17px;line-height:1.4}
+  .insight-card p{font-size:12px}
+
+  /* 엔딩 */
+  .ending{min-height:70svh;padding:80px 18px 60px}
+  .ending-ring:nth-child(1){width:320px;height:320px}
+  .ending-ring:nth-child(2){width:220px;height:220px}
+  .ending-ring:nth-child(3){width:140px;height:140px}
+  .ending-brand{font-size:9px;letter-spacing:.35em;margin-bottom:24px}
+  .ending-title{font-size:clamp(32px,11vw,52px);margin-bottom:20px}
+  .ending-copy{font-size:11px}
+
+  /* 푸터 */
+  .footer{margin-top:60px;padding:40px 18px 56px}
+  .footer-brand{font-size:9px;letter-spacing:.28em;margin-bottom:20px}
+  .footer-info{font-size:12px;gap:12px}
+  .footer-info span{font-size:8px;letter-spacing:.15em}
+
+  /* 비디오 섹션 */
+  .video-wrap{height:56vw;min-height:220px}
 }
 </style>
 </head>
@@ -543,7 +635,7 @@ h1{
   <section class="video-section">
     <div class="video-wrap">
       <iframe class="main-video"
-        src="https://www.youtube.com/embed/UUTpGs1Xrwg"
+        src="https://www.youtube.com/embed/UUTpGs1Xrwg?autoplay=1&mute=1&loop=1&playlist=UUTpGs1Xrwg&controls=1&rel=0"
         title="Moment Film" frameborder="0"
         allow="autoplay; encrypted-media" allowfullscreen>
       </iframe>
@@ -808,19 +900,22 @@ h1{
 
 <script>
 /* ── CURSOR ── */
+const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
 const cur = document.getElementById('cursor');
 const ring = document.getElementById('cursor-ring');
 let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  cur.style.left=mx+'px';cur.style.top=my+'px';
-});
-function animRing(){
-  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
-  ring.style.left=rx+'px';ring.style.top=ry+'px';
-  requestAnimationFrame(animRing);
+if(!isTouchDevice){
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    cur.style.left=mx+'px';cur.style.top=my+'px';
+  });
+  function animRing(){
+    rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+    ring.style.left=rx+'px';ring.style.top=ry+'px';
+    requestAnimationFrame(animRing);
+  }
+  animRing();
 }
-animRing();
 
 /* ── CANVAS GRID + PARTICLES ── */
 const canvas=document.getElementById('bg-canvas');
