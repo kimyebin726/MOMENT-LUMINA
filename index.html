@@ -686,36 +686,15 @@ h1{
 
   </section>
 <section class="video-section">
-  <div class="video-wrap">
-    <video
-      id="mainVideo"
-      class="main-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-    >
-      <source src="./moment-film.mp4" type="video/mp4">
-    </video>
-
-    <button class="sound-guide" id="soundBtn" type="button">
-      SOUND OFF
-    </button>
-  </div>
-</section>
-<script>
-const video = document.getElementById("mainVideo");
-const btn = document.getElementById("soundBtn");
-
-btn.addEventListener("click", async () => {
-  video.muted = !video.muted;
-  video.volume = 1;
-  await video.play();
-
-  btn.textContent = video.muted ? "SOUND OFF" : "SOUND ON";
-});
-</script>
+  <div class="video-wrap" id="soundWrap">
+    <iframe
+    class="main-video"
+    src="https://www.youtube.com/embed/UUTpGs1Xrwg"
+    title="Moment Film"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+</iframe>
 
 
   </div>
