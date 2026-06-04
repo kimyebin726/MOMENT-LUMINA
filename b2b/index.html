@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>3R INNOVATION | MOMENT LUMINA</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#000;
+  --white:#f7f7f7;
+  --muted:rgba(255,255,255,.58);
+  --line:rgba(63,227,188,.24);
+   --mint:#43E6D0;
+  --green:#43E6D0;
+  --blue:#217074;
+}
+html,body{
+  width:100%;
+  min-height:100%;
+  overflow-x:hidden;
+  overflow-y:auto;
+  background:#000;
+  color:var(--white);
+  font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Inter","Helvetica Neue",Arial,sans-serif;
+}
+body{
+  background:
+    radial-gradient(circle at 70% 10%,rgba(63,227,188,.12),transparent 30%),
+    radial-gradient(circle at 20% 60%,rgba(33,112,116,.18),transparent 34%),
+    #000;
+}
+.bg-fixed{
+  position:fixed;
+  inset:0;
+  background-image:url("./hero.png");
+  background-size:cover;
+  background-position:center;
+  opacity:.38;
+  transform:scale(1.06);
+  animation:bgMove 20s ease-in-out infinite alternate;
+  z-index:0;
+}
+.bg-fixed::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.92));
+}
+.particles{
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  opacity:.25;
+  background-image:
+    radial-gradient(circle,rgba(63,227,188,.75) 0 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(43,196,86,.45) 0 1px,transparent 1.5px),
+    radial-gradient(circle,rgba(255,255,255,.28) 0 1px,transparent 1.5px);
+  background-size:140px 140px,220px 220px,300px 300px;
+  animation:particleDrift 28s linear infinite;
+}
+.page{
+  position:relative;
+  z-index:2;
+  width:100%;
+}
+.header{
+  position:sticky;
+  top:0;
+  z-index:20;
+  padding:22px 22px 14px;
+  background:linear-gradient(to bottom,rgba(0,0,0,.86),rgba(0,0,0,.35),transparent);
+  backdrop-filter:blur(8px);
+}
+.logo{
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+}
+.logo img{
+
+  width:140px;
+  height:auto;
+
+  opacity:.95;
+}
+.section{
+  width:100%;
+  min-height:100vh;
+  padding:80px 22px 42px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.hero{
+  text-align:center;
+  min-height:92vh;
+}
+.eyebrow{
+  color:var(--mint);
+  font-size:11px;
+  letter-spacing:.28em;
+  margin-bottom:22px;
+}
+h1{
+  font-size:clamp(58px,17vw,94px);
+  line-height:.88;
+  letter-spacing:-.07em;
+  font-weight:820;
+}
+.dot{color:var(--green);text-shadow:0 0 24px rgba(43,196,86,.9)}
+.hero-copy{
+  margin-top:24px;
+  font-size:18px;
+  line-height:1.55;
+  color:rgba(255,255,255,.9);
+}
+.hero-copy span{
+  display:block;
+  margin-top:6px;
+  font-size:13px;
+  color:var(--muted);
+}
+.scroll{
+  margin-top:56px;
+  font-size:10px;
+  letter-spacing:.28em;
+  color:rgba(255,255,255,.45);
+  animation:float 2.8s ease-in-out infinite;
+}
+.card{
+  border:1px solid var(--line);
+  background:rgba(0,0,0,.48);
+  backdrop-filter:blur(12px);
+  border-radius:22px;
+  box-shadow:0 0 28px rgba(63,227,188,.08);
+}
+.title{
+  font-size:34px;
+  line-height:1.05;
+  letter-spacing:-.05em;
+  margin-bottom:18px;
+}
+.title .green{color:var(--green)}
+.desc{
+  font-size:15px;
+  line-height:1.75;
+  color:rgba(255,255,255,.82);
+  margin-bottom:26px;
+}
+.desc small{
+  display:block;
+  margin-top:8px;
+  color:var(--muted);
+  font-size:13px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+.signal{
+  padding:18px;
+  display:grid;
+  grid-template-columns:44px 1fr auto;
+  gap:14px;
+  align-items:center;
+  min-height:92px;
+}
+.icon{
+  width:44px;
+  height:44px;
+  border:1px solid rgba(63,227,188,.45);
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  color:var(--mint);
+  font-size:19px;
+  box-shadow:inset 0 0 18px rgba(63,227,188,.12);
+}
+.signal h3{
+  font-size:16px;
+  margin-bottom:5px;
+}
+.signal p{
+  font-size:12px;
+  line-height:1.45;
+  color:var(--muted);
+}
+.value{
+  font-size:23px;
+  font-weight:800;
+  color:var(--green);
+}
+.flow{
+  padding:20px;
+  margin-top:12px;
+}
+.flow-step{
+  position:relative;
+  padding:18px 0 20px 28px;
+  border-left:1px solid rgba(63,227,188,.34);
+}
+.flow-step::before{
+  content:"";
+  position:absolute;
+  left:-6px;
+  top:22px;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:var(--mint);
+  box-shadow:0 0 18px var(--mint);
+}
+.flow-step small{
+  color:var(--green);
+  font-size:10px;
+  letter-spacing:.18em;
+}
+.flow-step h3{
+  margin:7px 0;
+  font-size:21px;
+}
+.flow-step p{
+  font-size:14px;
+  line-height:1.55;
+  color:var(--muted);
+}
+.metric{
+  padding:20px;
+}
+.metric small{
+  color:var(--mint);
+  font-size:10px;
+  letter-spacing:.18em;
+}
+.metric h3{
+  margin:8px 0 8px;
+  font-size:22px;
+}
+.metric p{
+  font-size:14px;
+  line-height:1.55;
+  color:var(--muted);
+}
+.meter{
+  margin-top:16px;
+  width:100%;
+  height:6px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  overflow:hidden;
+}
+.meter span{
+  display:block;
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--blue),var(--mint),var(--green));
+  animation:load 2.2s ease forwards;
+}
+.insight{
+  padding:24px;
+  margin-bottom:14px;
+}
+.insight-label{
+  color:var(--mint);
+  font-size:11px;
+  letter-spacing:.18em;
+  margin-bottom:14px;
+}
+.insight h3{
+  font-size:24px;
+  line-height:1.35;
+  margin-bottom:10px;
+}
+.insight h3 b{color:var(--green)}
+.insight p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.6;
+}
+.bottom-space{
+  min-height:72vh;
+  text-align:center;
+}
+.final-logo{
+  font-size:13px;
+  letter-spacing:.5em;
+  color:rgba(255,255,255,.8);
+  margin-bottom:38px;
+}
+.final-title{
+  font-size:46px;
+  line-height:1;
+  letter-spacing:-.06em;
+  font-weight:820;
+}
+.final-copy{
+  margin-top:24px;
+  color:var(--muted);
+  line-height:1.7;
+}
+.main-video{
+  width:100%;
+  border-radius:24px;
+  display:block;
+}
+.video-wrap{
+  position:relative;
+  width:100%;
+}
+
+.sound-guide{
+  position:absolute;
+  right:20px;
+  bottom:20px;
+  z-index:10;
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid rgba(67,230,208,.4);
+  background:rgba(0,0,0,.55);
+  color:#43E6D0;
+  font-size:11px;
+  letter-spacing:.15em;
+  backdrop-filter:blur(10px);
+}
+.signal-card{
+  display:flex;
+  align-items:center;
+  gap:22px;
+
+  padding:26px;
+
+  border:1px solid rgba(63,227,188,.22);
+
+  border-radius:24px;
+
+  background:rgba(0,0,0,.38);
+
+  backdrop-filter:blur(14px);
+
+  margin-bottom:18px;
+
+  transition:.4s;
+}
+
+.signal-card:hover{
+  border-color:#3FE3BC;
+
+  box-shadow:
+  0 0 32px rgba(63,227,188,.18);
+}
+.signal-video{
+
+  width:90px;
+
+  height:90px;
+
+  flex-shrink:0;
+
+  border-radius:50%;
+
+  overflow:hidden;
+
+  border:1px solid rgba(63,227,188,.35);
+
+  box-shadow:
+  0 0 20px rgba(63,227,188,.15);
+}
+
+.signal-content h3{
+
+  font-size:34px;
+
+  font-weight:700;
+
+  margin-bottom:8px;
+
+  color:#fff;
+}
+
+@media (max-width:600px){
+
+  .signal-card{
+
+    padding:18px;
+
+    gap:16px;
+  }
+
+  .signal-video{
+
+    width:72px;
+
+    height:72px;
+  }
+
+  .signal-content h3{
+
+    font-size:18px;
+  }
+
+  .signal-content p{
+
+    font-size:13px;
+  }
+
+}
+
+.signal-content p{
+
+  font-size:18px;
+
+  line-height:1.6;
+
+  color:rgba(255,255,255,.65);
+}
+
+.signal-video video{
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+}
+.scroll-indicator{
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+
+  margin-top:18px;
+}
+
+.scroll-indicator span{
+
+  width:6px;
+  height:6px;
+
+  border-radius:50%;
+
+  background:#43E6D0;
+
+  box-shadow:
+  0 0 12px rgba(67,230,208,.8);
+
+  animation:flow 1.8s infinite;
+}
+
+.scroll-indicator span:nth-child(2){
+  animation-delay:.2s;
+}
+
+.scroll-indicator span:nth-child(3){
+  animation-delay:.4s;
+}
+.analysis-card{
+
+  display:flex;
+
+  gap:24px;
+
+  padding:24px;
+
+  border:1px solid rgba(67,230,208,.18);
+
+  border-radius:24px;
+
+  background:rgba(255,255,255,.01);
+
+  margin-bottom:20px;
+}
+
+.analysis-media{
+
+  width:220px;
+
+  flex-shrink:0;
+
+  border-radius:16px;
+
+  overflow:hidden;
+
+  background:#050505;
+}
+
+.analysis-media video{
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+}
+
+.analysis-info{
+
+  flex:1;
+}
+
+.analysis-label{
+
+  color:#43E6D0;
+
+  font-size:11px;
+
+  letter-spacing:.25em;
+
+  margin-bottom:12px;
+}
+
+.analysis-info h3{
+
+  font-size:34px;
+
+  margin-bottom:12px;
+}
+
+.analysis-info p{
+
+  font-size:18px;
+
+  margin-bottom:8px;
+}
+
+.analysis-info small{
+
+  display:block;
+
+  color:#9CA3AF;
+
+  line-height:1.6;
+
+  margin-bottom:18px;
+}
+
+.analysis-score{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  margin-bottom:10px;
+}
+
+.analysis-score strong{
+
+  color:#43E6D0;
+}
+
+.progress{
+
+  height:6px;
+
+  background:#1b1b1b;
+
+  border-radius:999px;
+
+  overflow:hidden;
+}
+
+.progress span{
+
+  display:block;
+
+  height:100%;
+
+  background:#43E6D0;
+
+  box-shadow:0 0 20px rgba(67,230,208,.5);
+}
+.footer{
+
+  margin-top:120px;
+
+  padding:60px 0 80px;
+
+  border-top:1px solid rgba(67,230,208,.12);
+
+  text-align:center;
+}
+
+.footer-brand{
+
+  font-size:14px;
+
+  letter-spacing:.35em;
+
+  color:#43E6D0;
+
+  margin-bottom:28px;
+}
+
+.footer-info{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:14px;
+
+  color:rgba(255,255,255,.55);
+
+  font-size:14px;
+
+  line-height:1.8;
+}
+
+.footer-info span{
+
+  display:block;
+
+  color:#fff;
+
+  font-size:11px;
+
+  letter-spacing:.2em;
+
+  margin-bottom:2px;
+
+  opacity:.7;
+}
+
+@keyframes flow{
+
+  0%{
+    opacity:.2;
+    transform:translateY(0);
+  }
+
+  50%{
+    opacity:1;
+    transform:translateY(8px);
+  }
+
+  100%{
+    opacity:.2;
+    transform:translateY(16px);
+  }
+
+}
+@keyframes bgMove{
+  from{transform:scale(1.06) translateY(0)}
+  to{transform:scale(1.12) translateY(-2%)}
+}
+@keyframes particleDrift{
+  from{background-position:0 0,0 0,0 0}
+  to{background-position:280px -140px,-220px 220px,300px 300px}
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(8px)}
+}
+@keyframes load{to{width:var(--w)}}
+
+
+</style>
+</head>
+
+<body>
+<div class="bg-fixed"></div>
+<div class="particles"></div>
+
+<header class="header">
+
+  <div class="logo">
+    <img src="./3r-logo-white.png" alt="3R Innovation">
+  </div>
+
+</header>
+
+  <section class="section hero">
+    <div class="eyebrow">MOMENT LUMINA</div>
+    <h1>Beyond<br>Behavior<span class="dot">.</span></h1>
+    <p class="hero-copy">
+      사용시간을 넘어, 디지털 행동을 이해합니다.
+      <span>Beyond Screen Time. Understanding Digital Behavior.</span>
+    </p>
+    <div class="scroll">SCROLL TO EXPLORE</div>
+    <div class="scroll-indicator">
+
+  <span></span>
+  <span></span>
+  <span></span>
+
+</div>
+
+  </section>
+<section class="video-section">
+  <div class="video-wrap" id="soundWrap">
+    <video
+      id="mainVideo"
+      class="main-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+      <source src="./moment-film.mp4" type="video/mp4">
+    </video>
+
+  <button class="sound-guide" id="soundBtn" type="button">
+  SOUND OFF
+</button>
+
+  </div>
+</section>  <section class="section">
+    <h2 class="title">AI가 읽는 것은<br><span class="green">시간이 아니라 행동입니다.</span></h2>
+    <p class="desc">
+      모먼트 루미나는 아이의 디지털 활동에서 발생하는 다양한 행동 신호를 분석하여
+      관심, 몰입, 변화의 흐름을 이해합니다.
+      <small>Moment Lumina analyzes digital behavior signals to understand attention, interest, and behavioral change.</small>
+    </p>
+
+    <div class="grid">
+     <div class="signal-card">
+
+  <div class="signal-video">
+    <video autoplay muted loop playsinline>
+      <source src="./eye-tracking.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="signal-content">
+    <h3>Eye Tracking</h3>
+    <p>
+      시선 이동과 체류 지점을 기반으로
+      몰입 흐름을 분석합니다.
+    </p>
+  </div>
+
+</div>
+
+<div class="signal-card">
+
+  <div class="signal-video">
+    <video autoplay muted loop playsinline>
+      <source src="./touch-pattern.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="signal-content">
+    <h3>Touch Pattern</h3>
+    <p>
+      터치 빈도, 반응 속도,
+      제스처 패턴을 분석합니다.
+    </p>
+  </div>
+
+</div>
+
+<div class="signal-card">
+
+  <div class="signal-video">
+    <video autoplay muted loop playsinline>
+      <source src="./motion-signal.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="signal-content">
+    <h3>Motion Signal</h3>
+    <p>
+      기기 움직임과 안정성 신호를 통해
+      행동 맥락을 파악합니다.
+    </p>
+  </div>
+
+</div>
+
+<div class="signal-card">
+
+  <div class="signal-video">
+    <video autoplay muted loop playsinline>
+      <source src="./app-activity.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="signal-content">
+    <h3>App Activity</h3>
+    <p>
+      앱 사용 시간,
+      실행 흐름을 분석합니다.
+    </p>
+  </div>
+
+</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">AI Behavioral<br><span class="green">Engine Flow</span></h2>
+    <p class="desc">
+      수집된 행동 신호는 AI 분석 엔진을 거쳐 부모가 이해할 수 있는 인사이트로 변환됩니다.
+      <small>Behavior signals are transformed into meaningful parent insights through the AI engine.</small>
+    </p>
+
+    <div class="card flow">
+      <div class="flow-step">
+        <small>01 SIGNAL COLLECTION</small>
+        <h3>디지털 행동 신호 수집</h3>
+        <p>Eye Tracking · Touch Pattern · Motion Signal · App Activity</p>
+      </div>
+
+      <div class="flow-step">
+        <small>02 ATTENTION ANALYSIS</small>
+        <h3>주의 흐름 분석</h3>
+        <p>어디에 오래 머물렀는지, 어떤 활동에 집중이 반복되었는지 분석합니다.</p>
+      </div>
+
+      <div class="flow-step">
+        <small>03 INTEREST DISCOVERY</small>
+        <h3>관심사 탐지</h3>
+        <p>콘텐츠, 앱, 주제 소비 패턴을 기반으로 관심 형성과 변화를 탐지합니다.</p>
+      </div>
+
+      <div class="flow-step">
+        <small>04 BEHAVIOR CHANGE</small>
+        <h3>행동 변화 신호 탐지</h3>
+        <p>이전 기간 대비 달라진 행동 흐름과 새로운 패턴을 발견합니다.</p>
+      </div>
+
+      <div class="flow-step">
+        <small>05 PARENT INSIGHT</small>
+        <h3>부모 인사이트 생성</h3>
+        <p>아이의 하루를 이해 가능한 이야기로 전환합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">What We<br><span class="green">Analyze</span></h2>
+
+    <div class="grid">
+  <div class="analysis-card">
+
+  <div class="analysis-media">
+    <video autoplay muted loop playsinline>
+      <source src="./focusdetect.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="analysis-info">
+
+    <div class="analysis-label">
+      ATTENTION PATTERN · 주의 패턴
+    </div>
+
+    <h3>
+      Long Focus Detected
+    </h3>
+
+    <p>
+      특정 콘텐츠에 오래 머무는
+      주의 흐름이 관찰됩니다.
+    </p>
+
+    <small>
+      Sustained attention was detected
+      within a specific content category.
+    </small>
+
+    <div class="analysis-score">
+      <span>Focus Duration</span>
+      <strong>HIGH%</strong>
+    </div>
+
+    <div class="progress">
+      <span style="width:92%"></span>
+    </div>
+
+  </div>
+
+</div>
+
+     <div class="analysis-card">
+
+  <div class="analysis-media">
+    <video autoplay muted loop playsinline>
+      <source src="./interest-discovery.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="analysis-info">
+
+    <div class="analysis-label">
+      INTEREST PATTERN · 관심 패턴
+    </div>
+
+    <h3>
+      Science • Learning
+    </h3>
+
+    <p>
+      새로운 관심 영역이
+      기존 활동과 함께 나타나고 있습니다.
+    </p>
+
+    <small>
+      Emerging interest clusters were
+      identified alongside existing behaviors.
+    </small>
+
+    <div class="analysis-score">
+      <span>Interest Growth</span>
+      <strong>EMERGING%</strong>
+    </div>
+
+    <div class="progress">
+      <span style="width:78%"></span>
+    </div>
+
+  </div>
+
+</div>
+
+      <div class="analysis-card">
+
+  <div class="analysis-media">
+    <video autoplay muted loop playsinline>
+      <source src="./behavior-change.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="analysis-info">
+
+    <div class="analysis-label">
+      BEHAVIOR CHANGE · 행동 변화
+    </div>
+
+    <h3>
+      Expansion Detected
+    </h3>
+
+    <p>
+      기존 활동 외
+      새로운 탐색 패턴이 감지되었습니다.
+    </p>
+
+    <small>
+      New exploration behaviors have been
+      detected beyond previous activity patterns.
+    </small>
+
+    <div class="analysis-score">
+      <span>Behavior Expansion</span>
+      <strong>NEW%</strong>
+    </div>
+
+    <div class="progress">
+      <span style="width:84%"></span>
+    </div>
+
+  </div>
+
+</div>
+
+      <div class="analysis-card">
+
+  <div class="analysis-media">
+    <video autoplay muted loop playsinline>
+      <source src="./content-diversity.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="analysis-info">
+
+    <div class="analysis-label">
+      CONTENT DIVERSITY · 콘텐츠 발견
+    </div>
+
+    <h3>
+      Moderate → High
+    </h3>
+
+    <p>
+      콘텐츠와 활동 범위가
+      점차 다양해지고 있습니다.
+    </p>
+
+    <small>
+      Content consumption is becoming
+      increasingly diverse over time.
+    </small>
+
+    <div class="analysis-score">
+      <span>Diversity Index</span>
+      <strong>INCREASING%</strong>
+    </div>
+
+    <div class="progress">
+      <span style="width:71%"></span>
+    </div>
+
+  </div>
+
+</div>
+  </section>
+
+  <section class="section">
+    <h2 class="title">AI Generated<br><span class="green">Parent Insight</span></h2>
+    <p class="desc">
+      데이터는 숫자로 끝나지 않습니다. 모먼트는 부모가 아이와 대화를 시작할 수 있는 이야기로 바꿉니다.
+      <small>Data becomes a story that helps parents understand and start meaningful conversations.</small>
+    </p>
+
+    <div class="card insight">
+      <div class="insight-label">INSIGHT 01</div>
+      <h3>최근 <b>과학 콘텐츠</b>에 대한 관심이 증가하고 있습니다.</h3>
+      <p>Interest in science content has increased recently.</p>
+    </div>
+
+    <div class="card insight">
+      <div class="insight-label">INSIGHT 02</div>
+      <h3>만들고 <b>탐색하는 활동</b>에 오래 머무는 모습이 관찰됩니다.</h3>
+      <p>Your child spends more time on creating and exploring activities.</p>
+    </div>
+
+    <div class="card insight">
+      <div class="insight-label">INSIGHT 03</div>
+      <h3>새로운 <b>행동 패턴</b>이 함께 나타나고 있습니다.</h3>
+      <p>New behavioral patterns are emerging across digital activities.</p>
+    </div>
+  </section>
+
+  <section class="section bottom-space">
+    <div class="final-logo">3R INNOVATION</div>
+    <div class="final-title">
+      The Story Behind<br>
+      A Child’s Digital Day<span class="dot">.</span>
+    </div>
+    <p class="final-copy">
+      아이의 하루를, 이해 가능한 이야기로<br>
+      MOMENT LUMINA · AI-Powered Digital Behavior Intelligence
+    </p>
+  </section>
+</main>
+<script>
+
+const video = document.getElementById("mainVideo");
+const soundBtn = document.getElementById("soundBtn");
+
+let soundEnabled = false;
+
+soundBtn.addEventListener("click", async () => {
+
+  soundEnabled = !soundEnabled;
+
+  if(soundEnabled){
+
+    video.muted = false;
+    video.volume = 1;
+
+    try{
+      await video.play();
+    }catch(e){}
+
+    soundBtn.innerHTML = "SOUND ON";
+
+  }else{
+
+    video.muted = true;
+
+    soundBtn.innerHTML = "SOUND OFF";
+
+  }
+
+});
+
+</script>
+<footer class="footer">
+
+  <div class="footer-brand">
+    3R INNOVATION
+  </div>
+
+  <div class="footer-info">
+
+    <div>
+      <span>서울사무실</span>
+      서울 서초구 · 서울AI허브
+    </div>
+
+    <div>
+      <span>대전사무실</span>
+      대전 유성구 · 대전TIPS타운
+    </div>
+
+    <div>
+      <span>Email</span>
+      moment-care@momentlumina.com
+    </div>
+
+  </div>
+
+</footer>
+</body>
+</html>
