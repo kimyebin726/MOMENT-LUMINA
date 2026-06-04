@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>3R INNOVATION | MOMENT LUMINA</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800&display=swap');
 
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --mint:#43E6D0;
-  --mint-dim:rgba(67,230,208,.18);
-  --mint-glow:rgba(67,230,208,.55);
-  --cyan:#00FFFF;
-  --deep:#050d10;
-  --panel:rgba(4,18,22,.82);
-  --line:rgba(67,230,208,.2);
+  --mint:#39D98A;
+  --mint-dim:rgba(57,217,138,.18);
+  --mint-glow:rgba(57,217,138,.55);
+  --cyan:#2ECC71;
+  --deep:#030a06;
+  --panel:rgba(3,12,6,.82);
+  --line:rgba(57,217,138,.2);
   --muted:rgba(255,255,255,.52);
-  --white:#f0fffe;
+  --white:#f4fff7;
 }
 
 html,body{
@@ -25,7 +25,7 @@ html,body{
   overflow-x:hidden;
   background:var(--deep);
   color:var(--white);
-  font-family:'Syne',sans-serif;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Pretendard','Helvetica Neue',Arial,sans-serif;
   cursor:none;
 }
 
@@ -37,11 +37,11 @@ html,body{
   transform:translate(-50%,-50%);
   transition:transform .1s,width .2s,height .2s,opacity .2s;
   mix-blend-mode:screen;
-  box-shadow:0 0 18px var(--mint-glow),0 0 40px rgba(67,230,208,.3);
+  box-shadow:0 0 18px var(--mint-glow),0 0 40px rgba(57,217,138,.3);
 }
 #cursor-ring{
   position:fixed;width:36px;height:36px;
-  border-radius:50%;border:1px solid rgba(67,230,208,.55);
+  border-radius:50%;border:1px solid rgba(57,217,138,.55);
   pointer-events:none;z-index:9998;
   transform:translate(-50%,-50%);
   transition:transform .18s ease,width .25s,height .25s,border-color .25s;
@@ -84,7 +84,7 @@ body:has(a:hover) #cursor-ring,body:has(.signal-card:hover) #cursor-ring{
   position:fixed;top:0;left:0;right:0;z-index:50;
   padding:20px 28px;
   display:flex;justify-content:space-between;align-items:center;
-  background:linear-gradient(to bottom,rgba(5,13,16,.95),transparent);
+  background:linear-gradient(to bottom,rgba(3,10,6,.95),transparent);
   backdrop-filter:blur(4px);
 }
 .logo img{width:120px;height:auto;opacity:.92}
@@ -118,7 +118,7 @@ body:has(a:hover) #cursor-ring,body:has(.signal-card:hover) #cursor-ring{
 }
 .hero-eyebrow span{
   display:inline-block;margin:0 8px;
-  color:rgba(67,230,208,.4);
+  color:rgba(57,217,138,.4);
 }
 h1{
   font-size:clamp(52px,15vw,108px);
@@ -134,7 +134,7 @@ h1{
 }
 .dot{
   -webkit-text-fill-color:var(--mint);
-  text-shadow:0 0 30px var(--mint-glow),0 0 60px rgba(67,230,208,.4);
+  text-shadow:0 0 30px var(--mint-glow),0 0 60px rgba(57,217,138,.4);
   color:var(--mint);
 }
 .hero-copy{
@@ -151,19 +151,19 @@ h1{
   position:absolute;
   width:480px;height:480px;
   border-radius:50%;
-  border:1px solid rgba(67,230,208,.06);
+  border:1px solid rgba(57,217,138,.06);
   top:50%;left:50%;transform:translate(-50%,-42%);
   animation:spin 38s linear infinite;pointer-events:none;
 }
 .hero-ring::before{
   content:'';position:absolute;
   width:340px;height:340px;
-  border-radius:50%;border:1px solid rgba(67,230,208,.1);
+  border-radius:50%;border:1px solid rgba(57,217,138,.1);
   top:50%;left:50%;transform:translate(-50%,-50%);
 }
 .hero-ring::after{
   content:'';position:absolute;inset:16px;
-  border-radius:50%;border:1px dashed rgba(67,230,208,.07);
+  border-radius:50%;border:1px dashed rgba(57,217,138,.07);
 }
 .scroll-cue{
   margin-top:64px;display:flex;flex-direction:column;align-items:center;gap:9px;
@@ -217,35 +217,35 @@ h1{
   position:relative;overflow:hidden;
   display:flex;align-items:center;gap:22px;
   padding:24px 22px;
-  border:0;border-bottom:1px solid rgba(67,230,208,.1);
+  border:0;border-bottom:1px solid rgba(57,217,138,.1);
   background:transparent;
   transition:all .4s cubic-bezier(.23,1,.32,1);
   cursor:none;
 }
-.signal-card:first-child{border-top:1px solid rgba(67,230,208,.1)}
+.signal-card:first-child{border-top:1px solid rgba(57,217,138,.1)}
 .signal-card::before{
   content:'';position:absolute;left:0;top:0;bottom:0;width:0;
-  background:linear-gradient(90deg,rgba(67,230,208,.08),transparent);
+  background:linear-gradient(90deg,rgba(57,217,138,.08),transparent);
   transition:width .4s cubic-bezier(.23,1,.32,1);
 }
 .signal-card:hover::before{width:100%}
-.signal-card:hover{border-bottom-color:rgba(67,230,208,.35)}
+.signal-card:hover{border-bottom-color:rgba(57,217,138,.35)}
 
 .signal-num{
   font-family:'Space Mono',monospace;
   font-size:9px;letter-spacing:.1em;
-  color:rgba(67,230,208,.4);
+  color:rgba(57,217,138,.4);
   min-width:24px;align-self:flex-start;padding-top:4px;
 }
 .signal-video{
   width:72px;height:72px;flex-shrink:0;
   border-radius:14px;overflow:hidden;
-  border:1px solid rgba(67,230,208,.22);
+  border:1px solid rgba(57,217,138,.22);
   position:relative;
 }
 .signal-video::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(67,230,208,.05),transparent);
+  background:linear-gradient(135deg,rgba(57,217,138,.05),transparent);
 }
 .signal-video video{width:100%;height:100%;object-fit:cover;display:block}
 .signal-body{flex:1}
@@ -257,7 +257,7 @@ h1{
 .signal-card:hover .signal-body h3{color:var(--mint)}
 .signal-body p{font-size:13px;line-height:1.55;color:var(--muted)}
 .signal-arrow{
-  font-size:18px;color:rgba(67,230,208,.3);
+  font-size:18px;color:rgba(57,217,138,.3);
   transition:transform .35s,color .35s;
   margin-right:4px;
 }
@@ -278,8 +278,8 @@ h1{
 .flow-line{
   position:absolute;left:40px;top:52px;
   width:1px;height:0;
-  background:linear-gradient(to bottom,var(--mint),rgba(67,230,208,.08));
-  box-shadow:0 0 14px rgba(67,230,208,.4);
+  background:linear-gradient(to bottom,var(--mint),rgba(57,217,138,.08));
+  box-shadow:0 0 14px rgba(57,217,138,.4);
   transition:height 2s cubic-bezier(.23,1,.32,1);
 }
 .flow-wrap.active .flow-line{height:calc(100% - 80px)}
@@ -300,12 +300,12 @@ h1{
   position:absolute;left:29px;top:22px;
   width:14px;height:14px;border-radius:50%;
   background:var(--deep);
-  border:2px solid rgba(67,230,208,.4);
+  border:2px solid rgba(57,217,138,.4);
   transition:border-color .3s,box-shadow .3s;
 }
 .flow-wrap.active .flow-node{
   border-color:var(--mint);
-  box-shadow:0 0 16px rgba(67,230,208,.6);
+  box-shadow:0 0 16px rgba(57,217,138,.6);
   animation:nodeGlow 2s ease-in-out infinite;
 }
 .flow-step small{
@@ -320,7 +320,7 @@ h1{
   position:relative;overflow:hidden;
   display:flex;gap:22px;
   padding:24px;
-  border:1px solid rgba(67,230,208,.12);
+  border:1px solid rgba(57,217,138,.12);
   border-radius:20px;
   background:rgba(4,18,22,.6);
   backdrop-filter:blur(14px);
@@ -329,21 +329,21 @@ h1{
   transition:border-color .4s,box-shadow .4s,transform .4s cubic-bezier(.23,1,.32,1);
 }
 .analysis-card:hover{
-  border-color:rgba(67,230,208,.45);
-  box-shadow:0 0 40px rgba(67,230,208,.12),inset 0 0 40px rgba(67,230,208,.04);
+  border-color:rgba(57,217,138,.45);
+  box-shadow:0 0 40px rgba(57,217,138,.12),inset 0 0 40px rgba(57,217,138,.04);
   transform:translateY(-3px);
 }
 .analysis-card::after{
   content:'';position:absolute;
   top:0;left:-100%;width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(67,230,208,.04),transparent);
+  background:linear-gradient(90deg,transparent,rgba(57,217,138,.04),transparent);
   transition:left .6s ease;
 }
 .analysis-card:hover::after{left:160%}
 
 .analysis-media{
   width:180px;flex-shrink:0;border-radius:14px;overflow:hidden;
-  background:#020c0f;border:1px solid rgba(67,230,208,.15);
+  background:#020c0f;border:1px solid rgba(57,217,138,.15);
 }
 .analysis-media video{width:100%;height:100%;object-fit:cover;display:block}
 
@@ -371,7 +371,7 @@ h1{
 .progress-fill{
   height:100%;border-radius:999px;width:0;
   background:linear-gradient(90deg,#217074,var(--mint),#00d4ff);
-  box-shadow:0 0 14px rgba(67,230,208,.5);
+  box-shadow:0 0 14px rgba(57,217,138,.5);
   transition:width 1.4s cubic-bezier(.23,1,.32,1);
 }
 
@@ -379,7 +379,7 @@ h1{
 .insight-card{
   position:relative;overflow:hidden;
   padding:26px 28px;
-  border:1px solid rgba(67,230,208,.14);
+  border:1px solid rgba(57,217,138,.14);
   border-radius:18px;
   background:rgba(4,18,22,.72);
   backdrop-filter:blur(14px);
@@ -393,8 +393,8 @@ h1{
   opacity:0;transition:opacity .35s;
 }
 .insight-card:hover{
-  border-color:rgba(67,230,208,.38);
-  box-shadow:0 0 30px rgba(67,230,208,.1);
+  border-color:rgba(57,217,138,.38);
+  box-shadow:0 0 30px rgba(57,217,138,.1);
   transform:translateX(4px);
 }
 .insight-card:hover::before{opacity:1}
@@ -406,7 +406,7 @@ h1{
 }
 .insight-num::after{
   content:'';flex:1;height:1px;
-  background:linear-gradient(to right,rgba(67,230,208,.3),transparent);
+  background:linear-gradient(to right,rgba(57,217,138,.3),transparent);
 }
 .insight-card h3{
   font-size:21px;letter-spacing:-.03em;line-height:1.35;margin-bottom:8px;
@@ -427,7 +427,7 @@ h1{
 }
 .ending-ring{
   position:absolute;
-  border-radius:50%;border:1px solid rgba(67,230,208,.07);
+  border-radius:50%;border:1px solid rgba(57,217,138,.07);
   pointer-events:none;
 }
 .ending-ring:nth-child(1){width:600px;height:600px;animation:spin 50s linear infinite}
@@ -454,7 +454,7 @@ h1{
 /* ── FOOTER ── */
 .footer{
   margin-top:100px;padding:56px 28px 72px;
-  border-top:1px solid rgba(67,230,208,.1);
+  border-top:1px solid rgba(57,217,138,.1);
   text-align:center;
 }
 .footer-brand{
@@ -493,8 +493,8 @@ h1{
   50%{opacity:1;transform:translateY(7px)}
 }
 @keyframes nodeGlow{
-  0%,100%{box-shadow:0 0 10px rgba(67,230,208,.5)}
-  50%{box-shadow:0 0 22px rgba(67,230,208,.9)}
+  0%,100%{box-shadow:0 0 10px rgba(57,217,138,.5)}
+  50%{box-shadow:0 0 22px rgba(57,217,138,.9)}
 }
 
 /* ── RESPONSIVE · 모든 모바일 공통 ── */
@@ -637,6 +637,236 @@ h1{
   .analysis-info h3{font-size:16px}
   .ending-title{font-size:clamp(16px,5.8vw,28px);padding:0 6px;letter-spacing:-.02em}
 }
+
+/* ── 태블릿 (769px ~ 1024px) ── */
+@media(min-width:769px) and (max-width:1024px){
+  .section{padding:100px 56px 60px;max-width:900px;margin:0 auto}
+  .hero{padding:150px 56px 60px;max-width:100%}
+  h1{font-size:clamp(64px,10vw,108px)}
+  .h1-sub{font-size:clamp(64px,10vw,108px)}
+  .title{font-size:clamp(32px,5vw,48px)}
+  .desc{font-size:17px}
+  .signal-card{padding:22px 20px;gap:22px}
+  .signal-video{width:100px;height:100px}
+  .signal-content h3{font-size:28px}
+  .signal-content p{font-size:17px}
+  .analysis-media{width:240px}
+  .analysis-info h3{font-size:30px}
+  .analysis-info p{font-size:17px}
+  .analysis-info small{font-size:13px}
+  .flow-step h3{font-size:22px}
+  .flow-step p{font-size:15px}
+  .insight h3{font-size:24px}
+  .insight p{font-size:15px}
+  .insight{padding:26px 28px}
+  .final-title{font-size:56px}
+  .ending-title{font-size:clamp(40px,6vw,72px);word-break:keep-all;padding:0 12px}
+  .footer{padding:56px 56px 72px}
+}
+
+/* ── 모바일 (max 768px) ── */
+@media(max-width:768px){
+  #cursor,#cursor-ring{display:none}
+  html,body{cursor:auto;overflow-x:hidden}
+  .header{padding:13px 18px}
+  .logo img{width:100px}
+  .header-tag{font-size:7px;letter-spacing:.1em}
+  .section{padding:72px 18px 44px}
+  .hero{padding:110px 18px 48px;min-height:100svh;overflow:hidden}
+  .hero-ring{width:260px;height:260px}
+  .hero-ring::before{width:180px;height:180px}
+  .hero-eyebrow{font-size:7px;letter-spacing:.14em;word-break:keep-all;line-height:1.6}
+  h1{font-size:clamp(36px,11vw,54px);line-height:.92;letter-spacing:-.04em;word-break:keep-all;width:100%}
+  .h1-sub{font-size:clamp(36px,11vw,54px);letter-spacing:-.04em;display:block;width:100%}
+  .hero-copy{font-size:14px;margin-top:16px}
+  .hero-copy span{font-size:11px}
+  .scroll{margin-top:32px}
+  .title{font-size:clamp(22px,7vw,32px);word-break:keep-all}
+  .desc{font-size:13px;margin-bottom:20px}
+  .desc small{font-size:11px}
+  .signal-card{padding:14px 12px;gap:12px}
+  .signal-video{width:58px;height:58px}
+  .signal-content h3{font-size:18px}
+  .signal-content p{font-size:13px}
+  .flow-wrap{padding:18px 14px}
+  .flow-line{left:30px}
+  .flow-step{padding:12px 0 14px 42px}
+  .flow-node{left:20px;width:11px;height:11px}
+  .flow-step small{font-size:7px}
+  .flow-step h3{font-size:15px;margin:4px 0 3px}
+  .flow-step p{font-size:11px}
+  .analysis-card{flex-direction:column;padding:16px;margin-bottom:14px;border-radius:16px}
+  .analysis-media{width:100%;height:160px;border-radius:12px}
+  .analysis-label{font-size:8px}
+  .analysis-info h3{font-size:18px;word-break:keep-all}
+  .analysis-info p{font-size:13px}
+  .analysis-info small{font-size:11px;margin-bottom:12px}
+  .stat-label,.stat-val{font-size:10px}
+  .insight{padding:18px 16px}
+  .insight-label{font-size:8px}
+  .insight h3{font-size:16px;line-height:1.45;word-break:keep-all}
+  .insight p{font-size:11px}
+  .bottom-space{min-height:65svh}
+  .final-title{font-size:clamp(28px,9vw,46px);word-break:keep-all;padding:0 8px;letter-spacing:-.04em}
+  .ending-title{font-size:clamp(18px,6.5vw,40px);word-break:keep-all;padding:0 8px;letter-spacing:-.03em}
+  .final-copy{font-size:12px}
+  .footer{margin-top:44px;padding:36px 18px 52px}
+  .footer-brand{font-size:8px;letter-spacing:.22em;margin-bottom:16px}
+  .footer-info{font-size:11px;gap:10px}
+  .footer-info span{font-size:7px}
+  .video-wrap{height:56vw;min-height:200px}
+}
+/* ── 소형 폰 (360px 이하) ── */
+@media(max-width:360px){
+  h1{font-size:clamp(30px,10vw,44px)}
+  .h1-sub{font-size:clamp(30px,10vw,44px)}
+  .section{padding:64px 14px 36px}
+  .hero{padding:100px 14px 40px}
+  .signal-video{width:48px;height:48px}
+  .signal-content h3{font-size:15px}
+  .analysis-info h3{font-size:16px}
+  .final-title{font-size:clamp(24px,8.5vw,36px)}
+  .ending-title{font-size:clamp(16px,5.5vw,28px);padding:0 6px}
+}
+
+/* ══ GRAPH STYLES ══ */
+
+/* 히어로 뇌파 */
+.hero-brainwave{
+  position:absolute;bottom:0;left:0;right:0;height:80px;
+  pointer-events:none;opacity:.22;z-index:1;
+}
+.hero-brainwave canvas{width:100%;height:100%;display:block}
+
+/* Signal 섹션 — 실시간 스트림 바 */
+.live-stream-bar{
+  display:flex;align-items:center;gap:10px;
+  padding:11px 16px;margin-bottom:22px;
+  border:1px solid rgba(57,217,138,.15);border-radius:12px;
+  background:rgba(57,217,138,.04);
+}
+.lsb-dot{width:6px;height:6px;border-radius:50%;background:var(--mint);
+  box-shadow:0 0 8px var(--mint-glow);animation:lsbBlink 1.4s infinite}
+.lsb-label{font-family:'Space Mono',monospace;font-size:9px;
+  letter-spacing:.18em;color:var(--mint);white-space:nowrap}
+.lsb-canvas-wrap{flex:1;height:28px;overflow:hidden}
+.lsb-canvas-wrap canvas{width:100%;height:100%;display:block}
+.lsb-val{font-family:'Space Mono',monospace;font-size:9px;
+  color:rgba(57,217,138,.7);white-space:nowrap}
+
+/* Signal 카드 미니 파형 */
+.signal-mini-wave{width:56px;height:30px;flex-shrink:0}
+.signal-mini-wave canvas{width:100%;height:100%;display:block}
+
+/* Flow 섹션 — 레이더 차트 */
+.radar-wrap{
+  display:flex;justify-content:center;align-items:center;
+  padding:18px 0 6px;margin-bottom:20px;
+}
+.radar-wrap canvas{display:block;max-width:100%}
+
+/* Analyze 카드 — 트렌드 라인 */
+.card-trend{width:100%;height:40px;margin-top:10px}
+.card-trend canvas{width:100%;height:100%;display:block}
+
+/* Insight 섹션 — 멀티 스트림 */
+.insight-stream{
+  padding:14px 16px;margin-bottom:22px;
+  border:1px solid rgba(57,217,138,.13);border-radius:14px;
+  background:rgba(57,217,138,.03);
+}
+.insight-stream-label{
+  font-family:'Space Mono',monospace;font-size:8px;
+  letter-spacing:.2em;color:var(--mint);margin-bottom:10px;opacity:.8;
+}
+.insight-stream canvas{width:100%;height:60px;display:block}
+
+@keyframes lsbBlink{0%,100%{opacity:.35}50%{opacity:1}}
+
+/* ══ APP SCREEN SECTION ══ */
+.app-section{
+  background:linear-gradient(to bottom,rgba(3,10,6,0),rgba(57,217,138,.04),rgba(3,10,6,0));
+}
+.app-section-eyebrow{
+  font-family:'Space Mono',monospace;font-size:8px;
+  letter-spacing:.32em;color:var(--mint);margin-bottom:14px;opacity:.8;
+}
+.app-section-title{
+  font-size:clamp(26px,5vw,42px);line-height:1.06;
+  letter-spacing:-.04em;font-weight:800;margin-bottom:12px;
+}
+.app-section-desc{
+  font-size:14px;line-height:1.8;
+  color:rgba(255,255,255,.7);margin-bottom:36px;
+}
+.app-section-desc small{
+  display:block;margin-top:6px;font-size:11px;
+  color:var(--muted);font-family:'Space Mono',monospace;
+}
+
+/* 메인 5스크린 목업 */
+.app-mockup-5{
+  width:100%;border-radius:16px;overflow:hidden;
+  margin-bottom:32px;
+  box-shadow:0 0 60px rgba(57,217,138,.1);
+  border:1px solid rgba(57,217,138,.12);
+}
+.app-mockup-5 img{width:100%;display:block}
+
+/* 싱글 + 개별 스크린 그리드 */
+.app-screens-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;
+  margin-bottom:14px;
+}
+.app-screen-item{
+  position:relative;border-radius:20px;overflow:hidden;
+  border:1px solid rgba(57,217,138,.14);
+  background:#000;
+  transition:transform .35s,box-shadow .35s;
+  cursor:none;
+}
+.app-screen-item:hover{
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 12px 40px rgba(57,217,138,.18);
+  border-color:rgba(57,217,138,.4);
+}
+.app-screen-item img{width:100%;display:block}
+.app-screen-item.wide{grid-column:1/-1}
+
+/* 3인 프로필 스크린 */
+.app-profiles-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;
+  margin-top:14px;
+}
+.app-profile-item{
+  border-radius:16px;overflow:hidden;
+  border:1px solid rgba(57,217,138,.14);
+  background:#000;
+  transition:transform .35s,box-shadow .35s;
+  cursor:none;
+}
+.app-profile-item:hover{
+  transform:translateY(-3px);
+  box-shadow:0 10px 32px rgba(57,217,138,.15);
+  border-color:rgba(57,217,138,.38);
+}
+.app-profile-item img{width:100%;display:block}
+.app-profile-label{
+  padding:8px 10px;
+  font-family:'Space Mono',monospace;font-size:8px;
+  letter-spacing:.14em;color:var(--mint);
+  background:rgba(3,12,6,.8);
+  text-align:center;
+}
+
+@media(max-width:768px){
+  .app-screens-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .app-profiles-grid{grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .app-profile-label{font-size:7px;padding:6px 8px}
+}
+@media(max-width:400px){
+  .app-profiles-grid{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
@@ -670,6 +900,7 @@ h1{
         <span></span><span></span><span></span>
       </div>
     </div>
+  <div class="hero-brainwave"><canvas id="heroBrainwave"></canvas></div>
   </section>
 
   <!-- VIDEO -->
@@ -694,6 +925,12 @@ h1{
       관심, 몰입, 변화의 흐름을 이해합니다.
       <small>Moment Lumina analyzes digital behavior signals to understand attention, interest, and behavioral change.</small>
     </p>
+    <div class="live-stream-bar reveal reveal-delay-2">
+      <div class="lsb-dot"></div>
+      <div class="lsb-label">LIVE · SIGNAL STREAM</div>
+      <div class="lsb-canvas-wrap"><canvas id="liveStreamCanvas"></canvas></div>
+      <div class="lsb-val" id="liveStreamVal">——</div>
+    </div>
     <div class="signal-grid reveal reveal-delay-3">
 
       <div class="signal-card">
@@ -707,6 +944,7 @@ h1{
           <h3>App Activity</h3>
           <p>어떤 활동이 반복되고, 어떻게 연결되는지 분석합니다.</p>
         </div>
+        <div class="signal-mini-wave"><canvas data-wave-color="57,217,138" data-wave-speed="0.8"></canvas></div>
         <div class="signal-arrow">→</div>
       </div>
 
@@ -721,6 +959,7 @@ h1{
           <h3>Touch Pattern</h3>
           <p>반복 행동과 반응 패턴을 분석합니다.</p>
         </div>
+        <div class="signal-mini-wave"><canvas data-wave-color="100,230,160" data-wave-speed="1.2"></canvas></div>
         <div class="signal-arrow">→</div>
       </div>
 
@@ -735,6 +974,7 @@ h1{
           <h3>Motion Signal</h3>
           <p>기기 움직임과 안정성 신호를 통해 사용 상황의 변화를 탐지합니다.</p>
         </div>
+        <div class="signal-mini-wave"><canvas data-wave-color="57,217,138" data-wave-speed="1.6"></canvas></div>
         <div class="signal-arrow">→</div>
       </div>
 
@@ -749,6 +989,7 @@ h1{
           <h3>Eye Tracking <span style="font-size:12px;color:var(--mint);font-family:'Space Mono',monospace;letter-spacing:.08em">→ Attention Signal</span></h3>
           <p>시선, 체류, 반응 신호를 통해 주의 흐름을 분석합니다.</p>
         </div>
+        <div class="signal-mini-wave"><canvas data-wave-color="46,204,113" data-wave-speed="0.6"></canvas></div>
         <div class="signal-arrow">→</div>
       </div>
 
@@ -763,6 +1004,7 @@ h1{
       수집된 행동 신호는 AI 분석 엔진을 거쳐 부모가 이해할 수 있는 인사이트로 변환됩니다.
       <small>Behavior signals are transformed into meaningful parent insights through the AI engine.</small>
     </p>
+    <div class="radar-wrap reveal reveal-delay-2"><canvas id="radarChart" width="260" height="260"></canvas></div>
     <div class="flow-wrap reveal reveal-delay-3 flow-motion">
       <div class="flow-line"></div>
 
@@ -833,7 +1075,7 @@ h1{
         </div>
         <div class="analysis-info">
           <div class="analysis-label">INTEREST PATTERN · 관심 패턴</div>
-          <h3>Science Learning <span style="font-size:16px;color:var(--mint)">›</span> Emerging Interest</h3>
+          <h3>Emerging Interest</h3>
           <p>새로운 관심 흐름이 기존 패턴과 함께 나타나고 있습니다.</p>
           <small>A new interest flow is emerging alongside existing patterns.</small>
           <div class="stat-row">
@@ -894,6 +1136,10 @@ h1{
       <small>Data becomes a story that helps parents understand and start meaningful conversations.</small>
     </p>
 
+    <div class="insight-stream reveal reveal-delay-2">
+      <div class="insight-stream-label">▸ BEHAVIORAL DATA STREAM · REAL-TIME</div>
+      <canvas id="insightMultiStream"></canvas>
+    </div>
     <div class="reveal reveal-delay-3">
       <div class="insight-card">
         <div class="insight-num">INSIGHT 01</div>
@@ -911,6 +1157,54 @@ h1{
         <p>A different behavioral flow from before is beginning to appear.</p>
       </div>
     </div>
+  </section>
+
+
+  <!-- APP SCREENS -->
+  <section class="section app-section">
+    <div class="app-section-eyebrow reveal">MOMENT APP · 실제 화면</div>
+    <h2 class="app-section-title reveal reveal-delay-1">
+      아이의 하루가<br><span class="accent">이렇게 보입니다.</span>
+    </h2>
+    <p class="app-section-desc reveal reveal-delay-2">
+      모먼트 루미나가 분석한 행동 데이터는 부모가 이해할 수 있는 이야기로 전달됩니다.
+      <small>Behavioral data is transformed into meaningful stories parents can understand and act on.</small>
+    </p>
+
+    <!-- 5스크린 목업 -->
+    <div class="app-mockup-5 reveal reveal-delay-2">
+      <img src="./moment_images/mockup-5screen.png" alt="Moment App 5 screens">
+    </div>
+
+    <!-- 싱글 큰 목업 + home1 -->
+    <div class="app-screens-grid reveal reveal-delay-3">
+      <div class="app-screen-item">
+        <img src="./moment_images/mockup-large.png" alt="Moment App Home">
+      </div>
+      <div class="app-screen-item">
+        <img src="./moment_images/mockup-single.png" alt="Moment App Single">
+      </div>
+      <div class="app-screen-item wide">
+        <img src="./moment_images/home1.jpg" alt="Moment App Home Screen">
+      </div>
+    </div>
+
+    <!-- 3인 프로필 -->
+    <div class="app-profiles-grid reveal reveal-delay-3">
+      <div class="app-profile-item">
+        <img src="./moment_images/moment_juhong.png" alt="주홍">
+        <div class="app-profile-label">주홍 · 마인크래프트</div>
+      </div>
+      <div class="app-profile-item">
+        <img src="./moment_images/minjae_3x.png" alt="민재">
+        <div class="app-profile-label">민재 · 웹툰·유튜브</div>
+      </div>
+      <div class="app-profile-item">
+        <img src="./moment_images/seoyoung_3x.png" alt="서영">
+        <div class="app-profile-label">서영 · K-팝 댄스</div>
+      </div>
+    </div>
+
   </section>
 
   <!-- ENDING -->
@@ -940,6 +1234,310 @@ h1{
 </footer>
 
 <script>
+
+/* ══ GRAPH SCRIPTS ══ */
+
+/* ─────────────────────────────────────────
+   1. HERO — 부유하는 데이터 산점도
+   아이의 행동 데이터 포인트들이 중력 없이 떠다님
+───────────────────────────────────────── */
+(function(){
+  const c = document.getElementById('heroBrainwave');
+  if(!c) return;
+  const x = c.getContext('2d');
+  let dots = [];
+  function resize(){ c.width=c.offsetWidth||window.innerWidth; c.height=80; initDots(); }
+  function initDots(){
+    dots=[];
+    for(let i=0;i<38;i++) dots.push({
+      x:Math.random()*c.width, y:Math.random()*c.height,
+      vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.25,
+      r:Math.random()*2.2+0.5,
+      a:Math.random()*0.55+0.15,
+      pulse:Math.random()*Math.PI*2,
+      col: Math.random()>.5 ? '57,217,138' : '100,230,160'
+    });
+  }
+  resize(); window.addEventListener('resize', resize);
+  function draw(){
+    const w=c.width, h=c.height;
+    x.clearRect(0,0,w,h);
+    dots.forEach(d=>{
+      d.x+=d.vx; d.y+=d.vy; d.pulse+=0.035;
+      if(d.x<0||d.x>w) d.vx*=-1;
+      if(d.y<0||d.y>h) d.vy*=-1;
+      const pr=d.r*(1+Math.sin(d.pulse)*0.4);
+      x.beginPath(); x.arc(d.x,d.y,pr,0,Math.PI*2);
+      x.fillStyle=`rgba(${d.col},${d.a})`; x.fill();
+    });
+    // 가까운 점끼리 연결선
+    for(let i=0;i<dots.length;i++){
+      for(let j=i+1;j<dots.length;j++){
+        const dx=dots[i].x-dots[j].x, dy=dots[i].y-dots[j].y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<80){
+          x.beginPath(); x.moveTo(dots[i].x,dots[i].y); x.lineTo(dots[j].x,dots[j].y);
+          x.strokeStyle=`rgba(57,217,138,${(1-dist/80)*0.18})`; x.lineWidth=1; x.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ─────────────────────────────────────────
+   2. SIGNAL — 실시간 막대 스펙트럼 (주파수 바)
+   오디오 이퀄라이저처럼 아이 신호 강도 표현
+───────────────────────────────────────── */
+(function(){
+  const c = document.getElementById('liveStreamCanvas');
+  const valEl = document.getElementById('liveStreamVal');
+  if(!c) return;
+  const x = c.getContext('2d');
+  const BAR_COUNT = 32;
+  let bars = Array(BAR_COUNT).fill(0).map(()=>Math.random());
+  let targets = Array(BAR_COUNT).fill(0).map(()=>Math.random());
+  let t=0;
+  function resize(){ c.width=c.offsetWidth||200; c.height=28; }
+  resize(); window.addEventListener('resize', resize);
+  function draw(){
+    const w=c.width, h=c.height;
+    x.clearRect(0,0,w,h);
+    const bw = w/BAR_COUNT - 1;
+    let sum=0;
+    bars.forEach((b,i)=>{
+      targets[i] = Math.max(0.05, Math.min(0.95,
+        targets[i] + (Math.random()-.5)*0.18 + Math.sin(t+i*0.4)*0.05
+      ));
+      bars[i] += (targets[i]-bars[i])*0.18;
+      sum+=bars[i];
+      const bh = bars[i]*h*0.9;
+      const grd = x.createLinearGradient(0,h,0,h-bh);
+      grd.addColorStop(0,'rgba(57,217,138,0.85)');
+      grd.addColorStop(1,'rgba(100,230,160,0.4)');
+      x.fillStyle=grd;
+      x.fillRect(i*(bw+1), h-bh, bw, bh);
+    });
+    if(valEl) valEl.textContent=Math.round(sum/BAR_COUNT*100)+'%';
+    t+=0.04; requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* Signal 카드 미니 파형 — 각각 다른 스타일 */
+document.querySelectorAll('.signal-mini-wave canvas').forEach((c, idx)=>{
+  function resize(){ c.width=c.offsetWidth||56; c.height=c.offsetHeight||30; }
+  resize();
+  const x=c.getContext('2d');
+  const col=c.dataset.waveColor||'57,217,138';
+  const spd=parseFloat(c.dataset.waveSpeed||'1');
+  let t=idx*1.4;
+  (function draw(){
+    const w=c.width, h=c.height;
+    x.clearRect(0,0,w,h);
+    if(idx===0){
+      // App Activity: 계단식 막대
+      const n=8, bw=w/n-1;
+      for(let i=0;i<n;i++){
+        const bh=(Math.sin(t+i*0.7)*0.4+0.6)*h*0.75;
+        x.fillStyle=`rgba(${col},0.75)`;
+        x.fillRect(i*(bw+1),h-bh,bw,bh);
+      }
+    } else if(idx===1){
+      // Touch Pattern: 점 산포
+      for(let i=0;i<12;i++){
+        const px=((i*37+Math.sin(t+i)*8)%w+w)%w;
+        const py=h/2+Math.sin(t*1.2+i*0.9)*h*0.32;
+        x.beginPath(); x.arc(px,py,1.5,0,Math.PI*2);
+        x.fillStyle=`rgba(${col},0.8)`; x.fill();
+      }
+    } else if(idx===2){
+      // Motion Signal: 지그재그
+      x.beginPath();
+      for(let i=0;i<=w;i+=6){
+        const y=h/2+(((i/6)%2===0)?1:-1)*h*0.3*(0.6+Math.sin(t+i/w*5)*0.4);
+        i===0?x.moveTo(i,y):x.lineTo(i,y);
+      }
+      x.strokeStyle=`rgba(${col},0.75)`; x.lineWidth=1.3; x.stroke();
+    } else {
+      // Eye Tracking: 부드러운 사인 (기존 유지)
+      x.beginPath();
+      for(let i=0;i<w;i++){
+        const y=h/2+Math.sin(i/w*Math.PI*4+t)*7+Math.sin(i/w*Math.PI*9+t*1.4)*3;
+        i===0?x.moveTo(i,y):x.lineTo(i,y);
+      }
+      x.strokeStyle=`rgba(${col},0.8)`; x.lineWidth=1.3; x.stroke();
+    }
+    t+=0.035*spd; requestAnimationFrame(draw);
+  })();
+});
+
+/* ─────────────────────────────────────────
+   3. FLOW — 레이더 차트 (화려한 버전)
+───────────────────────────────────────── */
+(function(){
+  const c = document.getElementById('radarChart');
+  if(!c) return;
+  const x=c.getContext('2d');
+  const labels=['App Activity','Touch Pattern','Motion Signal','Eye Tracking','Insight'];
+  const vals=[0.88,0.74,0.82,0.91,0.78];
+  let t=0;
+  function draw(){
+    const w=c.width, h=c.height, cx=w/2, cy=h/2, r=Math.min(w,h)*0.36;
+    x.clearRect(0,0,w,h);
+    const n=labels.length;
+    for(let ring=1;ring<=4;ring++){
+      x.beginPath();
+      for(let i=0;i<n;i++){
+        const a=i/n*Math.PI*2-Math.PI/2, rr=r*ring/4;
+        i===0?x.moveTo(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr):x.lineTo(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr);
+      }
+      x.closePath(); x.strokeStyle=`rgba(57,217,138,${0.06+ring*0.025})`; x.lineWidth=1; x.stroke();
+      // 링 안쪽 채우기 (가장 안쪽만)
+      if(ring===1){ x.fillStyle='rgba(57,217,138,0.04)'; x.fill(); }
+    }
+    for(let i=0;i<n;i++){
+      const a=i/n*Math.PI*2-Math.PI/2;
+      x.beginPath(); x.moveTo(cx,cy); x.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r);
+      x.strokeStyle='rgba(57,217,138,0.13)'; x.lineWidth=1; x.stroke();
+    }
+    const pulse=1+Math.sin(t)*0.045;
+    // 두 번째 레이어 (약간 다른 데이터로 깊이감)
+    x.beginPath();
+    for(let i=0;i<n;i++){
+      const a=i/n*Math.PI*2-Math.PI/2;
+      const v=vals[i]*0.6*r;
+      i===0?x.moveTo(cx+Math.cos(a)*v,cy+Math.sin(a)*v):x.lineTo(cx+Math.cos(a)*v,cy+Math.sin(a)*v);
+    }
+    x.closePath(); x.fillStyle='rgba(57,217,138,0.08)'; x.fill();
+    x.strokeStyle='rgba(57,217,138,0.3)'; x.lineWidth=1; x.stroke();
+    // 메인 레이어
+    x.beginPath();
+    for(let i=0;i<n;i++){
+      const a=i/n*Math.PI*2-Math.PI/2, v=vals[i]*pulse*r;
+      i===0?x.moveTo(cx+Math.cos(a)*v,cy+Math.sin(a)*v):x.lineTo(cx+Math.cos(a)*v,cy+Math.sin(a)*v);
+    }
+    x.closePath();
+    const g=x.createRadialGradient(cx,cy,0,cx,cy,r);
+    g.addColorStop(0,'rgba(57,217,138,0.28)'); g.addColorStop(1,'rgba(46,204,113,0.04)');
+    x.fillStyle=g; x.fill();
+    x.strokeStyle='rgba(57,217,138,0.9)'; x.lineWidth=1.8; x.stroke();
+    for(let i=0;i<n;i++){
+      const a=i/n*Math.PI*2-Math.PI/2, v=vals[i]*pulse*r;
+      x.beginPath(); x.arc(cx+Math.cos(a)*v,cy+Math.sin(a)*v,3.5,0,Math.PI*2);
+      x.shadowColor='rgba(57,217,138,0.9)'; x.shadowBlur=12;
+      x.fillStyle='#39D98A'; x.fill(); x.shadowBlur=0;
+    }
+    x.font='8px Space Mono,monospace'; x.fillStyle='rgba(57,217,138,0.75)'; x.textAlign='center';
+    for(let i=0;i<n;i++){
+      const a=i/n*Math.PI*2-Math.PI/2;
+      x.fillText(labels[i], cx+Math.cos(a)*(r+20), cy+Math.sin(a)*(r+20)+3);
+    }
+    t+=0.024; requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ─────────────────────────────────────────
+   4. ANALYZE — 도넛 게이지 차트
+   각 카드마다 퍼센트 도넛 애니메이션
+───────────────────────────────────────── */
+document.querySelectorAll('.card-trend canvas').forEach((c,idx)=>{
+  const vals=[92,78,84,71];
+  const colors=['57,217,138','100,230,160','57,217,138','46,204,113'];
+  const pct=vals[idx]||80;
+  const col=colors[idx]||'57,217,138';
+  function resize(){ c.width=c.offsetWidth||300; c.height=40; }
+  resize();
+  const x=c.getContext('2d');
+  let current=0;
+  const target=pct/100;
+  // 막대 그래프 스타일로 (주간 데이터 느낌)
+  const weekData = [
+    [0.6,0.72,0.65,0.8,0.74,0.88,0.92],
+    [0.4,0.45,0.52,0.58,0.62,0.7,0.78],
+    [0.55,0.6,0.65,0.7,0.72,0.78,0.84],
+    [0.8,0.72,0.68,0.6,0.62,0.68,0.71],
+  ];
+  const data=weekData[idx]||weekData[0];
+  const labels=['MON','TUE','WED','THU','FRI','SAT','SUN'];
+  const w=c.width, h=c.height;
+  const bw=(w-10)/(data.length*2);
+  x.clearRect(0,0,w,h);
+  data.forEach((v,i)=>{
+    const bh=v*(h-8);
+    const bx=5+i*(bw*2);
+    const grd=x.createLinearGradient(0,h,0,h-bh);
+    grd.addColorStop(0,`rgba(${col},0.85)`);
+    grd.addColorStop(1,`rgba(${col},0.3)`);
+    x.fillStyle=grd;
+    x.beginPath();
+    x.roundRect ? x.roundRect(bx,h-bh,bw,bh,2) : x.fillRect(bx,h-bh,bw,bh);
+    x.fill();
+  });
+  // 마지막 막대 강조
+  const lastBh=data[data.length-1]*(h-8);
+  const lastBx=5+(data.length-1)*(bw*2);
+  x.beginPath(); x.arc(lastBx+bw/2,h-lastBh-2,3,0,Math.PI*2);
+  x.shadowColor=`rgba(${col},0.9)`; x.shadowBlur=8;
+  x.fillStyle=`#39D98A`; x.fill(); x.shadowBlur=0;
+});
+
+/* ─────────────────────────────────────────
+   5. INSIGHT — 심전도 스타일 (단일 날카로운 파형)
+───────────────────────────────────────── */
+(function(){
+  const c=document.getElementById('insightMultiStream');
+  if(!c) return;
+  const x=c.getContext('2d');
+  let t=0, history=[];
+  function resize(){ c.width=c.offsetWidth||300; c.height=60; history=[]; }
+  resize(); window.addEventListener('resize', resize);
+  function ecgVal(t){
+    const mod=t%4;
+    if(mod<1.6) return 0;
+    if(mod<1.75) return (mod-1.6)/0.15*0.3;
+    if(mod<1.85) return 0.3-(mod-1.75)/0.1*1.2;
+    if(mod<1.95) return -0.9+(mod-1.85)/0.1*1.9;
+    if(mod<2.1) return 1.0-(mod-1.95)/0.15*1.0;
+    if(mod<2.25) return -(mod-2.1)/0.15*0.25;
+    if(mod<2.5) return -0.25+(mod-2.25)/0.25*0.25;
+    return 0;
+  }
+  function draw(){
+    const w=c.width, h=c.height, mid=h/2;
+    history.push(ecgVal(t));
+    if(history.length>w) history.shift();
+    x.clearRect(0,0,w,h);
+    // 중앙선
+    x.beginPath(); x.moveTo(0,mid); x.lineTo(w,mid);
+    x.strokeStyle='rgba(57,217,138,0.1)'; x.lineWidth=1; x.stroke();
+    // ECG 라인
+    x.beginPath();
+    history.forEach((v,i)=>{
+      const py=mid-v*mid*0.75;
+      i===0?x.moveTo(i,py):x.lineTo(i,py);
+    });
+    const g=x.createLinearGradient(0,0,w,0);
+    g.addColorStop(0,'rgba(57,217,138,0)');
+    g.addColorStop(0.7,'rgba(57,217,138,0.8)');
+    g.addColorStop(1,'rgba(100,230,160,1)');
+    x.strokeStyle=g; x.lineWidth=1.8; x.stroke();
+    // 현재 포인트 글로우
+    if(history.length>0){
+      const lv=history[history.length-1];
+      const lx=history.length-1, ly=mid-lv*mid*0.75;
+      x.beginPath(); x.arc(lx,ly,3,0,Math.PI*2);
+      x.shadowColor='rgba(57,217,138,1)'; x.shadowBlur=14;
+      x.fillStyle='#39D98A'; x.fill(); x.shadowBlur=0;
+    }
+    t+=0.055; requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+
 /* ── CURSOR ── */
 const isTouchDevice = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
 const cur = document.getElementById('cursor');
@@ -986,7 +1584,7 @@ class Particle{
   }
   draw(){
     ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(67,230,208,${this.alpha})`;ctx.fill();
+    ctx.fillStyle=`rgba(57,217,138,${this.alpha})`;ctx.fill();
   }
 }
 
@@ -995,7 +1593,7 @@ for(let i=0;i<80;i++) particles.push(new Particle());
 function drawGrid(){
   ctx.clearRect(0,0,W,H);
   /* horizontal lines */
-  ctx.strokeStyle='rgba(67,230,208,.04)';ctx.lineWidth=1;
+  ctx.strokeStyle='rgba(57,217,138,.04)';ctx.lineWidth=1;
   for(let y=0;y<H;y+=80){
     ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
   }
