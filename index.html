@@ -4,1131 +4,913 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <title>3R INNOVATION | MOMENT LUMINA</title>
-
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap');
+
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#000;
-  --white:#f7f7f7;
-  --muted:rgba(255,255,255,.58);
-  --line:rgba(63,227,188,.24);
-   --mint:#43E6D0;
-  --green:#43E6D0;
-  --blue:#217074;
+  --mint:#43E6D0;
+  --mint-dim:rgba(67,230,208,.18);
+  --mint-glow:rgba(67,230,208,.55);
+  --cyan:#00FFFF;
+  --deep:#050d10;
+  --panel:rgba(4,18,22,.82);
+  --line:rgba(67,230,208,.2);
+  --muted:rgba(255,255,255,.52);
+  --white:#f0fffe;
 }
+
 html,body{
-  width:100%;
-  min-height:100%;
+  width:100%;min-height:100%;
   overflow-x:hidden;
-  overflow-y:auto;
-  background:#000;
+  background:var(--deep);
   color:var(--white);
-  font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Inter","Helvetica Neue",Arial,sans-serif;
+  font-family:'Syne',sans-serif;
+  cursor:none;
 }
-body{
-  background:
-    radial-gradient(circle at 70% 10%,rgba(63,227,188,.12),transparent 30%),
-    radial-gradient(circle at 20% 60%,rgba(33,112,116,.18),transparent 34%),
-    #000;
+
+/* ── CUSTOM CURSOR ── */
+#cursor{
+  position:fixed;width:12px;height:12px;
+  border-radius:50%;background:var(--mint);
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform .1s,width .2s,height .2s,opacity .2s;
+  mix-blend-mode:screen;
+  box-shadow:0 0 18px var(--mint-glow),0 0 40px rgba(67,230,208,.3);
 }
-.bg-fixed{
-  position:fixed;
-  inset:0;
-  background-image:url("./hero.png");
-  background-size:cover;
-  background-position:center;
-  opacity:.38;
-  transform:scale(1.06);
-  animation:bgMove 20s ease-in-out infinite alternate;
-  z-index:0;
+#cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border-radius:50%;border:1px solid rgba(67,230,208,.55);
+  pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform .18s ease,width .25s,height .25s,border-color .25s;
 }
-.bg-fixed::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.2),rgba(0,0,0,.92));
+body:has(a:hover) #cursor,body:has(button:hover) #cursor,
+body:has(.signal-card:hover) #cursor,body:has(.analysis-card:hover) #cursor{
+  width:22px;height:22px;
 }
-.particles{
-  position:fixed;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
-  opacity:.25;
-  background-image:
-    radial-gradient(circle,rgba(63,227,188,.75) 0 1px,transparent 1.5px),
-    radial-gradient(circle,rgba(43,196,86,.45) 0 1px,transparent 1.5px),
-    radial-gradient(circle,rgba(255,255,255,.28) 0 1px,transparent 1.5px);
-  background-size:140px 140px,220px 220px,300px 300px;
-  animation:particleDrift 28s linear infinite;
+body:has(a:hover) #cursor-ring,body:has(.signal-card:hover) #cursor-ring{
+  width:58px;height:58px;border-color:var(--mint);
 }
-.page{
-  position:relative;
-  z-index:2;
-  width:100%;
+
+/* ── CANVAS BG ── */
+#bg-canvas{
+  position:fixed;inset:0;z-index:0;
+  pointer-events:none;opacity:.55;
 }
+
+/* ── NOISE OVERLAY ── */
+.noise{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity:.4;
+}
+
+/* ── SCANLINES ── */
+.scanlines{
+  position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,.06) 2px,
+    rgba(0,0,0,.06) 4px
+  );
+}
+
+/* ── HEADER ── */
 .header{
-  position:sticky;
-  top:0;
-  z-index:20;
-  padding:22px 22px 14px;
-  background:linear-gradient(to bottom,rgba(0,0,0,.86),rgba(0,0,0,.35),transparent);
-  backdrop-filter:blur(8px);
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  padding:20px 28px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:linear-gradient(to bottom,rgba(5,13,16,.95),transparent);
+  backdrop-filter:blur(4px);
 }
-.logo{
-
-  display:flex;
-
-  justify-content:center;
-
-  align-items:center;
+.logo img{width:120px;height:auto;opacity:.92}
+.header-tag{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:.2em;
+  color:var(--mint);opacity:.75;
 }
-.logo img{
 
-  width:140px;
-  height:auto;
+/* ── PAGE WRAPPER ── */
+.page{position:relative;z-index:2;width:100%}
 
-  opacity:.95;
-}
+/* ── SECTION BASE ── */
 .section{
-  width:100%;
-  min-height:100vh;
-  padding:80px 22px 42px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
+  width:100%;min-height:100vh;
+  padding:100px 28px 60px;
+  display:flex;flex-direction:column;justify-content:center;
 }
+
+/* ── HERO ── */
 .hero{
-  text-align:center;
-  min-height:92vh;
+  text-align:center;min-height:100vh;
+  padding-top:140px;
+  position:relative;
 }
-.eyebrow{
-  color:var(--mint);
-  font-size:11px;
-  letter-spacing:.28em;
-  margin-bottom:22px;
+.hero-eyebrow{
+  font-family:'Space Mono',monospace;
+  font-size:10px;letter-spacing:.35em;
+  color:var(--mint);margin-bottom:28px;
+  opacity:0;animation:fadeUp .8s .3s ease forwards;
+}
+.hero-eyebrow span{
+  display:inline-block;margin:0 8px;
+  color:rgba(67,230,208,.4);
 }
 h1{
-  font-size:clamp(58px,17vw,94px);
-  line-height:.88;
-  letter-spacing:-.07em;
-  font-weight:820;
+  font-size:clamp(52px,15vw,108px);
+  line-height:.86;letter-spacing:-.06em;
+  font-weight:800;
+  opacity:0;animation:fadeUp .9s .5s ease forwards;
 }
-.dot{color:var(--green);text-shadow:0 0 24px rgba(43,196,86,.9)}
+.h1-sub{
+  display:block;font-size:clamp(52px,15vw,108px);
+  letter-spacing:-.06em;
+  background:linear-gradient(135deg,var(--white) 20%,var(--mint) 60%,#00d4ff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.dot{
+  -webkit-text-fill-color:var(--mint);
+  text-shadow:0 0 30px var(--mint-glow),0 0 60px rgba(67,230,208,.4);
+  color:var(--mint);
+}
 .hero-copy{
-  margin-top:24px;
-  font-size:18px;
-  line-height:1.55;
-  color:rgba(255,255,255,.9);
+  margin-top:32px;font-size:17px;line-height:1.65;
+  color:rgba(255,255,255,.85);
+  opacity:0;animation:fadeUp .8s .8s ease forwards;
 }
 .hero-copy span{
-  display:block;
-  margin-top:6px;
-  font-size:13px;
-  color:var(--muted);
+  display:block;margin-top:8px;font-size:13px;
+  color:var(--muted);font-family:'Space Mono',monospace;
+  letter-spacing:.05em;
 }
-.scroll{
-  margin-top:56px;
-  font-size:10px;
-  letter-spacing:.28em;
-  color:rgba(255,255,255,.45);
-  animation:float 2.8s ease-in-out infinite;
-}
-.card{
-  border:1px solid var(--line);
-  background:rgba(0,0,0,.48);
-  backdrop-filter:blur(12px);
-  border-radius:22px;
-  box-shadow:0 0 28px rgba(63,227,188,.08);
-}
-.title{
-  font-size:34px;
-  line-height:1.05;
-  letter-spacing:-.05em;
-  margin-bottom:18px;
-}
-.title .green{color:var(--green)}
-.desc{
-  font-size:15px;
-  line-height:1.75;
-  color:rgba(255,255,255,.82);
-  margin-bottom:26px;
-}
-.desc small{
-  display:block;
-  margin-top:8px;
-  color:var(--muted);
-  font-size:13px;
-}
-.grid{
-  display:grid;
-  grid-template-columns:1fr;
-  gap:14px;
-}
-.signal{
-  padding:18px;
-  display:grid;
-  grid-template-columns:44px 1fr auto;
-  gap:14px;
-  align-items:center;
-  min-height:92px;
-}
-.icon{
-  width:44px;
-  height:44px;
-  border:1px solid rgba(63,227,188,.45);
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  color:var(--mint);
-  font-size:19px;
-  box-shadow:inset 0 0 18px rgba(63,227,188,.12);
-}
-.signal h3{
-  font-size:16px;
-  margin-bottom:5px;
-}
-.signal p{
-  font-size:12px;
-  line-height:1.45;
-  color:var(--muted);
-}
-.value{
-  font-size:23px;
-  font-weight:800;
-  color:var(--green);
-}
-.flow{
-  padding:20px;
-  margin-top:12px;
-}
-.flow-step{
-  position:relative;
-  padding:18px 0 20px 28px;
-  border-left:1px solid rgba(63,227,188,.34);
-}
-.flow-step::before{
-  content:"";
+.hero-ring{
   position:absolute;
-  left:-6px;
-  top:22px;
-  width:11px;
-  height:11px;
+  width:480px;height:480px;
   border-radius:50%;
-  background:var(--mint);
-  box-shadow:0 0 18px var(--mint);
+  border:1px solid rgba(67,230,208,.06);
+  top:50%;left:50%;transform:translate(-50%,-42%);
+  animation:spin 38s linear infinite;pointer-events:none;
 }
-.flow-step small{
-  color:var(--green);
-  font-size:10px;
-  letter-spacing:.18em;
+.hero-ring::before{
+  content:'';position:absolute;
+  width:340px;height:340px;
+  border-radius:50%;border:1px solid rgba(67,230,208,.1);
+  top:50%;left:50%;transform:translate(-50%,-50%);
 }
-.flow-step h3{
-  margin:7px 0;
-  font-size:21px;
+.hero-ring::after{
+  content:'';position:absolute;inset:16px;
+  border-radius:50%;border:1px dashed rgba(67,230,208,.07);
 }
-.flow-step p{
-  font-size:14px;
-  line-height:1.55;
-  color:var(--muted);
+.scroll-cue{
+  margin-top:64px;display:flex;flex-direction:column;align-items:center;gap:9px;
+  opacity:0;animation:fadeUp .6s 1.2s ease forwards;
 }
-.metric{
-  padding:20px;
+.scroll-cue-label{
+  font-family:'Space Mono',monospace;font-size:9px;
+  letter-spacing:.3em;color:rgba(255,255,255,.35);
 }
-.metric small{
-  color:var(--mint);
-  font-size:10px;
-  letter-spacing:.18em;
+.scroll-dots span{
+  display:block;width:5px;height:5px;border-radius:50%;
+  background:var(--mint);box-shadow:0 0 10px var(--mint-glow);
+  animation:pulse-dot 1.8s infinite;
 }
-.metric h3{
-  margin:8px 0 8px;
-  font-size:22px;
+.scroll-dots span:nth-child(2){animation-delay:.22s}
+.scroll-dots span:nth-child(3){animation-delay:.44s}
+
+/* ── VIDEO SECTION ── */
+.video-section{position:relative;z-index:2}
+.video-wrap{position:relative;width:100%;height:100vh}
+.main-video{width:100%;height:100%;border:0}
+
+/* ── SECTION TITLE ── */
+.section-eyebrow{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:.32em;color:var(--mint);
+  margin-bottom:16px;opacity:.8;
 }
-.metric p{
-  font-size:14px;
-  line-height:1.55;
-  color:var(--muted);
+.section-title{
+  font-size:clamp(28px,7vw,44px);
+  line-height:1.05;letter-spacing:-.04em;
+  font-weight:800;margin-bottom:14px;
 }
-.meter{
-  margin-top:16px;
-  width:100%;
-  height:6px;
-  border-radius:999px;
-  background:rgba(255,255,255,.12);
-  overflow:hidden;
+.section-title .accent{
+  background:linear-gradient(90deg,var(--mint),#00d4ff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.meter span{
-  display:block;
-  height:100%;
-  width:0;
-  background:linear-gradient(90deg,var(--blue),var(--mint),var(--green));
-  animation:load 2.2s ease forwards;
+.section-desc{
+  font-size:14px;line-height:1.8;
+  color:rgba(255,255,255,.72);margin-bottom:32px;
+  max-width:520px;
 }
-.insight{
-  padding:24px;
-  margin-bottom:14px;
-}
-.insight-label{
-  color:var(--mint);
-  font-size:11px;
-  letter-spacing:.18em;
-  margin-bottom:14px;
-}
-.insight h3{
-  font-size:24px;
-  line-height:1.35;
-  margin-bottom:10px;
-}
-.insight h3 b{color:var(--green)}
-.insight p{
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.6;
-}
-.bottom-space{
-  min-height:72vh;
-  text-align:center;
-}
-.final-logo{
-  font-size:13px;
-  letter-spacing:.5em;
-  color:rgba(255,255,255,.8);
-  margin-bottom:38px;
-}
-.final-title{
-  font-size:46px;
-  line-height:1;
-  letter-spacing:-.06em;
-  font-weight:820;
-}
-.final-copy{
-  margin-top:24px;
-  color:var(--muted);
-  line-height:1.7;
-}
-.video-wrap {
-    position: relative;
-    width: 100%;
-    height: 100vh;
+.section-desc small{
+  display:block;margin-top:6px;font-size:12px;
+  color:var(--muted);font-family:'Space Mono',monospace;
 }
 
-.main-video {
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
+/* ── SIGNAL CARDS ── */
+.signal-grid{display:flex;flex-direction:column;gap:0}
 .signal-card{
-  display:flex;
-  align-items:center;
-  gap:22px;
-
-  padding:26px;
-
-  border:1px solid rgba(63,227,188,.22);
-
-  border-radius:24px;
-
-  background:rgba(0,0,0,.38);
-
-  backdrop-filter:blur(14px);
-
-  margin-bottom:18px;
-
-  transition:.4s;
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;gap:22px;
+  padding:24px 22px;
+  border:0;border-bottom:1px solid rgba(67,230,208,.1);
+  background:transparent;
+  transition:all .4s cubic-bezier(.23,1,.32,1);
+  cursor:none;
 }
+.signal-card:first-child{border-top:1px solid rgba(67,230,208,.1)}
+.signal-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:0;
+  background:linear-gradient(90deg,rgba(67,230,208,.08),transparent);
+  transition:width .4s cubic-bezier(.23,1,.32,1);
+}
+.signal-card:hover::before{width:100%}
+.signal-card:hover{border-bottom-color:rgba(67,230,208,.35)}
 
-.signal-card:hover{
-  border-color:#3FE3BC;
-
-  box-shadow:
-  0 0 32px rgba(63,227,188,.18);
+.signal-num{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:.1em;
+  color:rgba(67,230,208,.4);
+  min-width:24px;align-self:flex-start;padding-top:4px;
 }
 .signal-video{
-
-  width:90px;
-
-  height:90px;
-
-  flex-shrink:0;
-
-  border-radius:50%;
-
-  overflow:hidden;
-
-  border:1px solid rgba(63,227,188,.35);
-
-  box-shadow:
-  0 0 20px rgba(63,227,188,.15);
-}
-
-.signal-content h3{
-
-  font-size:34px;
-
-  font-weight:700;
-
-  margin-bottom:8px;
-
-  color:#fff;
-}
-
-@media (max-width:600px){
-
-  .signal-card{
-
-    padding:18px;
-
-    gap:16px;
-  }
-
-  .signal-video{
-
-    width:72px;
-
-    height:72px;
-  }
-
-  .signal-content h3{
-
-    font-size:18px;
-  }
-
-  .signal-content p{
-
-    font-size:13px;
-  }
-
-}
-
-.signal-content p{
-
-  font-size:18px;
-
-  line-height:1.6;
-
-  color:rgba(255,255,255,.65);
-}
-
-.signal-video video{
-
-  width:100%;
-
-  height:100%;
-
-  object-fit:cover;
-
-  display:block;
-}
-.scroll-indicator{
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:8px;
-
-  margin-top:18px;
-}
-
-.scroll-indicator span{
-
-  width:6px;
-  height:6px;
-
-  border-radius:50%;
-
-  background:#43E6D0;
-
-  box-shadow:
-  0 0 12px rgba(67,230,208,.8);
-
-  animation:flow 1.8s infinite;
-}
-
-.scroll-indicator span:nth-child(2){
-  animation-delay:.2s;
-}
-
-.scroll-indicator span:nth-child(3){
-  animation-delay:.4s;
-}
-.analysis-card{
-
-  display:flex;
-
-  gap:24px;
-
-  padding:24px;
-
-  border:1px solid rgba(67,230,208,.18);
-
-  border-radius:24px;
-
-  background:rgba(255,255,255,.01);
-
-  margin-bottom:20px;
-}
-
-.analysis-media{
-
-  width:220px;
-
-  flex-shrink:0;
-
-  border-radius:16px;
-
-  overflow:hidden;
-
-  background:#050505;
-}
-
-.analysis-media video{
-
-  width:100%;
-
-  height:100%;
-
-  object-fit:cover;
-
-  display:block;
-}
-
-.analysis-info{
-
-  flex:1;
-}
-
-.analysis-label{
-
-  color:#43E6D0;
-
-  font-size:11px;
-
-  letter-spacing:.25em;
-
-  margin-bottom:12px;
-}
-
-.analysis-info h3{
-
-  font-size:34px;
-
-  margin-bottom:12px;
-}
-
-.analysis-info p{
-
-  font-size:18px;
-
-  margin-bottom:8px;
-}
-
-.analysis-info small{
-
-  display:block;
-
-  color:#9CA3AF;
-
-  line-height:1.6;
-
-  margin-bottom:18px;
-}
-
-.analysis-score{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  margin-bottom:10px;
-}
-
-.analysis-score strong{
-
-  color:#43E6D0;
-}
-
-.progress{
-
-  height:6px;
-
-  background:#1b1b1b;
-
-  border-radius:999px;
-
-  overflow:hidden;
-}
-
-.progress span{
-
-  display:block;
-
-  height:100%;
-
-  background:#43E6D0;
-
-  box-shadow:0 0 20px rgba(67,230,208,.5);
-}
-.footer{
-
-  margin-top:120px;
-
-  padding:60px 0 80px;
-
-  border-top:1px solid rgba(67,230,208,.12);
-
-  text-align:center;
-}
-
-.footer-brand{
-
-  font-size:14px;
-
-  letter-spacing:.35em;
-
-  color:#43E6D0;
-
-  margin-bottom:28px;
-}
-
-.footer-info{
-
-  display:flex;
-
-  flex-direction:column;
-
-  gap:14px;
-
-  color:rgba(255,255,255,.55);
-
-  font-size:14px;
-
-  line-height:1.8;
-}
-
-.footer-info span{
-
-  display:block;
-
-  color:#fff;
-
-  font-size:11px;
-
-  letter-spacing:.2em;
-
-  margin-bottom:2px;
-
-  opacity:.7;
-}
-
-@keyframes flow{
-
-  0%{
-    opacity:.2;
-    transform:translateY(0);
-  }
-
-  50%{
-    opacity:1;
-    transform:translateY(8px);
-  }
-
-  100%{
-    opacity:.2;
-    transform:translateY(16px);
-  }
-
-}
-@keyframes bgMove{
-  from{transform:scale(1.06) translateY(0)}
-  to{transform:scale(1.12) translateY(-2%)}
-}
-@keyframes particleDrift{
-  from{background-position:0 0,0 0,0 0}
-  to{background-position:280px -140px,-220px 220px,300px 300px}
-}
-@keyframes float{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(8px)}
-}
-@keyframes load{to{width:var(--w)}}
-
-.flow-motion{
+  width:72px;height:72px;flex-shrink:0;
+  border-radius:14px;overflow:hidden;
+  border:1px solid rgba(67,230,208,.22);
   position:relative;
 }
+.signal-video::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(67,230,208,.05),transparent);
+}
+.signal-video video{width:100%;height:100%;object-fit:cover;display:block}
+.signal-body{flex:1}
+.signal-body h3{
+  font-size:22px;font-weight:700;letter-spacing:-.03em;
+  margin-bottom:5px;color:var(--white);
+  transition:color .3s;
+}
+.signal-card:hover .signal-body h3{color:var(--mint)}
+.signal-body p{font-size:13px;line-height:1.55;color:var(--muted)}
+.signal-arrow{
+  font-size:18px;color:rgba(67,230,208,.3);
+  transition:transform .35s,color .35s;
+  margin-right:4px;
+}
+.signal-card:hover .signal-arrow{
+  transform:translateX(5px);
+  color:var(--mint);
+}
 
-.flow-motion::before{
-  content:"";
+/* ── FLOW ── */
+.flow-wrap{
+  position:relative;margin-top:8px;
+  padding:28px 24px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:var(--panel);
+  backdrop-filter:blur(16px);
+}
+.flow-line{
+  position:absolute;left:40px;top:52px;
+  width:1px;height:0;
+  background:linear-gradient(to bottom,var(--mint),rgba(67,230,208,.08));
+  box-shadow:0 0 14px rgba(67,230,208,.4);
+  transition:height 2s cubic-bezier(.23,1,.32,1);
+}
+.flow-wrap.active .flow-line{height:calc(100% - 80px)}
+
+.flow-step{
+  position:relative;padding:18px 0 20px 54px;
+  opacity:0;transform:translateY(20px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.flow-wrap.active .flow-step{opacity:1;transform:translateY(0)}
+.flow-wrap.active .flow-step:nth-child(2){transition-delay:.15s}
+.flow-wrap.active .flow-step:nth-child(3){transition-delay:.32s}
+.flow-wrap.active .flow-step:nth-child(4){transition-delay:.5s}
+.flow-wrap.active .flow-step:nth-child(5){transition-delay:.68s}
+.flow-wrap.active .flow-step:nth-child(6){transition-delay:.86s}
+
+.flow-node{
+  position:absolute;left:29px;top:22px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--deep);
+  border:2px solid rgba(67,230,208,.4);
+  transition:border-color .3s,box-shadow .3s;
+}
+.flow-wrap.active .flow-node{
+  border-color:var(--mint);
+  box-shadow:0 0 16px rgba(67,230,208,.6);
+  animation:nodeGlow 2s ease-in-out infinite;
+}
+.flow-step small{
+  font-family:'Space Mono',monospace;
+  font-size:9px;letter-spacing:.22em;color:var(--mint);opacity:.8;
+}
+.flow-step h3{margin:7px 0 5px;font-size:19px;letter-spacing:-.03em}
+.flow-step p{font-size:13px;line-height:1.55;color:var(--muted)}
+
+/* ── ANALYSIS CARDS ── */
+.analysis-card{
+  position:relative;overflow:hidden;
+  display:flex;gap:22px;
+  padding:24px;
+  border:1px solid rgba(67,230,208,.12);
+  border-radius:20px;
+  background:rgba(4,18,22,.6);
+  backdrop-filter:blur(14px);
+  margin-bottom:16px;
+  cursor:none;
+  transition:border-color .4s,box-shadow .4s,transform .4s cubic-bezier(.23,1,.32,1);
+}
+.analysis-card:hover{
+  border-color:rgba(67,230,208,.45);
+  box-shadow:0 0 40px rgba(67,230,208,.12),inset 0 0 40px rgba(67,230,208,.04);
+  transform:translateY(-3px);
+}
+.analysis-card::after{
+  content:'';position:absolute;
+  top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(67,230,208,.04),transparent);
+  transition:left .6s ease;
+}
+.analysis-card:hover::after{left:160%}
+
+.analysis-media{
+  width:180px;flex-shrink:0;border-radius:14px;overflow:hidden;
+  background:#020c0f;border:1px solid rgba(67,230,208,.15);
+}
+.analysis-media video{width:100%;height:100%;object-fit:cover;display:block}
+
+.analysis-info{flex:1}
+.analysis-label{
+  font-family:'Space Mono',monospace;font-size:9px;
+  letter-spacing:.28em;color:var(--mint);margin-bottom:10px;opacity:.85;
+}
+.analysis-info h3{font-size:26px;letter-spacing:-.04em;margin-bottom:10px}
+.analysis-info p{font-size:14px;line-height:1.6;margin-bottom:6px;color:rgba(255,255,255,.85)}
+.analysis-info small{
+  display:block;font-size:12px;font-family:'Space Mono',monospace;
+  color:var(--muted);line-height:1.55;margin-bottom:18px;
+}
+
+.stat-row{display:flex;justify-content:space-between;margin-bottom:8px}
+.stat-label{font-size:11px;color:var(--muted);font-family:'Space Mono',monospace;letter-spacing:.06em}
+.stat-val{
+  font-size:11px;font-family:'Space Mono',monospace;
+  color:var(--mint);letter-spacing:.06em;
+}
+.progress-track{
+  height:4px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;
+}
+.progress-fill{
+  height:100%;border-radius:999px;width:0;
+  background:linear-gradient(90deg,#217074,var(--mint),#00d4ff);
+  box-shadow:0 0 14px rgba(67,230,208,.5);
+  transition:width 1.4s cubic-bezier(.23,1,.32,1);
+}
+
+/* ── INSIGHTS ── */
+.insight-card{
+  position:relative;overflow:hidden;
+  padding:26px 28px;
+  border:1px solid rgba(67,230,208,.14);
+  border-radius:18px;
+  background:rgba(4,18,22,.72);
+  backdrop-filter:blur(14px);
+  margin-bottom:14px;
+  cursor:none;
+  transition:border-color .35s,box-shadow .35s,transform .35s;
+}
+.insight-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(to bottom,var(--mint),transparent);
+  opacity:0;transition:opacity .35s;
+}
+.insight-card:hover{
+  border-color:rgba(67,230,208,.38);
+  box-shadow:0 0 30px rgba(67,230,208,.1);
+  transform:translateX(4px);
+}
+.insight-card:hover::before{opacity:1}
+
+.insight-num{
+  font-family:'Space Mono',monospace;font-size:9px;
+  letter-spacing:.22em;color:var(--mint);margin-bottom:12px;
+  display:flex;align-items:center;gap:10px;
+}
+.insight-num::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,rgba(67,230,208,.3),transparent);
+}
+.insight-card h3{
+  font-size:21px;letter-spacing:-.03em;line-height:1.35;margin-bottom:8px;
+}
+.insight-card h3 b{
+  background:linear-gradient(90deg,var(--mint),#00d4ff);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.insight-card p{font-size:13px;font-family:'Space Mono',monospace;color:var(--muted);line-height:1.6}
+
+/* ── ENDING ── */
+.ending{
+  min-height:80vh;text-align:center;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  position:relative;overflow:hidden;
+}
+.ending-ring{
   position:absolute;
-  left:26px;
-  top:28px;
-  width:1px;
-  height:0;
-  background:linear-gradient(
-    to bottom,
-    #43E6D0,
-    rgba(67,230,208,.15)
-  );
-  box-shadow:0 0 18px rgba(67,230,208,.5);
-  transition:height 1.8s ease;
+  border-radius:50%;border:1px solid rgba(67,230,208,.07);
+  pointer-events:none;
+}
+.ending-ring:nth-child(1){width:600px;height:600px;animation:spin 50s linear infinite}
+.ending-ring:nth-child(2){width:420px;height:420px;animation:spin 34s linear infinite reverse}
+.ending-ring:nth-child(3){width:260px;height:260px;animation:spin 22s linear infinite}
+.ending-brand{
+  font-family:'Space Mono',monospace;font-size:11px;
+  letter-spacing:.5em;color:rgba(255,255,255,.55);margin-bottom:32px;
+}
+.ending-title{
+  font-size:clamp(34px,9vw,72px);
+  line-height:.96;letter-spacing:-.05em;font-weight:800;
+  margin-bottom:28px;
+}
+.ending-title .g{
+  background:linear-gradient(120deg,var(--white) 30%,var(--mint) 70%,#00d4ff 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.ending-copy{
+  font-size:14px;color:var(--muted);line-height:1.75;
+  font-family:'Space Mono',monospace;
 }
 
-.flow-motion.active::before{
-  height:calc(100% - 56px);
+/* ── FOOTER ── */
+.footer{
+  margin-top:100px;padding:56px 28px 72px;
+  border-top:1px solid rgba(67,230,208,.1);
+  text-align:center;
+}
+.footer-brand{
+  font-family:'Space Mono',monospace;
+  font-size:11px;letter-spacing:.4em;
+  color:var(--mint);margin-bottom:28px;
+}
+.footer-info{
+  display:flex;flex-direction:column;gap:14px;
+  color:var(--muted);font-size:13px;line-height:1.8;
+  font-family:'Space Mono',monospace;
+}
+.footer-info span{
+  display:block;color:#fff;font-size:9px;
+  letter-spacing:.22em;margin-bottom:2px;opacity:.65;
 }
 
-.reveal-step{
-  opacity:0;
-  transform:translateY(26px);
-  transition:
-    opacity .8s ease,
-    transform .8s ease;
+/* ── REVEAL ── */
+.reveal{
+  opacity:0;transform:translateY(28px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.35s}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  to{opacity:1;transform:translateY(0)}
+  from{opacity:0;transform:translateY(24px)}
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse-dot{
+  0%,100%{opacity:.3;transform:translateY(0)}
+  50%{opacity:1;transform:translateY(7px)}
+}
+@keyframes nodeGlow{
+  0%,100%{box-shadow:0 0 10px rgba(67,230,208,.5)}
+  50%{box-shadow:0 0 22px rgba(67,230,208,.9)}
 }
 
-.flow-motion.active .reveal-step{
-  opacity:1;
-  transform:translateY(0);
-}
-
-.flow-motion.active .reveal-step:nth-child(1){transition-delay:.1s;}
-.flow-motion.active .reveal-step:nth-child(2){transition-delay:.35s;}
-.flow-motion.active .reveal-step:nth-child(3){transition-delay:.6s;}
-.flow-motion.active .reveal-step:nth-child(4){transition-delay:.85s;}
-.flow-motion.active .reveal-step:nth-child(5){transition-delay:1.1s;}
-
-.flow-motion.active .flow-step::before{
-  animation:dotPulse 1.8s ease-in-out infinite;
-}
-
-@keyframes dotPulse{
-  0%,100%{
-    transform:scale(1);
-    box-shadow:0 0 12px rgba(67,230,208,.5);
-  }
-  50%{
-    transform:scale(1.25);
-    box-shadow:0 0 26px rgba(67,230,208,.9);
-  }
+/* ── RESPONSIVE ── */
+@media(max-width:600px){
+  .analysis-card{flex-direction:column}
+  .analysis-media{width:100%;height:180px}
+  .signal-card{padding:18px 14px;gap:14px}
+  .signal-video{width:60px;height:60px}
+  .signal-body h3{font-size:18px}
 }
 </style>
 </head>
-
 <body>
-<div class="bg-fixed"></div>
-<div class="particles"></div>
+<canvas id="bg-canvas"></canvas>
+<div class="noise"></div>
+<div class="scanlines"></div>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
 <header class="header">
-
-  <div class="logo">
-    <img src="./3r-logo-white.png" alt="3R Innovation">
-  </div>
-
+  <div class="logo"><img src="./3r-logo-white.png" alt="3R Innovation"></div>
+  <div class="header-tag">MOMENT LUMINA · v2.0</div>
 </header>
 
+<div class="page">
+
+  <!-- HERO -->
   <section class="section hero">
-    <div class="eyebrow">MOMENT LUMINA</div>
-    <h1>Beyond<br>Behavior<span class="dot">.</span></h1>
+    <div class="hero-ring"></div>
+    <div class="hero-eyebrow">
+      <span>▸</span> MOMENT LUMINA <span>▸</span> AI BEHAVIORAL INTELLIGENCE <span>▸</span>
+    </div>
+    <h1>Beyond<br><span class="h1-sub">Behavior<span class="dot">.</span></span></h1>
     <p class="hero-copy">
       사용시간을 넘어, 디지털 행동을 이해합니다.
-      <span>Beyond Screen Time. Understanding Digital Behavior.</span>
+      <span>디지털 행동 데이터에서 관심과 변화를 읽어냅니다.</span>
     </p>
-    <div class="scroll">SCROLL TO EXPLORE</div>
-    <div class="scroll-indicator">
-
-  <span></span>
-  <span></span>
-  <span></span>
-
-</div>
-
+    <div class="scroll-cue">
+      <div class="scroll-cue-label">SCROLL TO EXPLORE</div>
+      <div class="scroll-dots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
   </section>
-<section class="video-section">
-  <div class="video-wrap" id="soundWrap">
-    <iframe
-    class="main-video"
-    src="https://www.youtube.com/embed/UUTpGs1Xrwg"
-    title="Moment Film"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-</iframe>
 
+  <!-- VIDEO -->
+  <section class="video-section">
+    <div class="video-wrap">
+      <iframe class="main-video"
+        src="https://www.youtube.com/embed/UUTpGs1Xrwg"
+        title="Moment Film" frameborder="0"
+        allow="autoplay; encrypted-media" allowfullscreen>
+      </iframe>
+    </div>
+  </section>
 
-  </div>
-</section>  <section class="section">
-    <h2 class="title">AI가 읽는 것은<br><span class="green">시간이 아니라 행동입니다.</span></h2>
-    <p class="desc">
+  <!-- SIGNALS -->
+  <section class="section">
+    <div class="section-eyebrow reveal">BEHAVIORAL SIGNAL COLLECTION</div>
+    <h2 class="section-title reveal reveal-delay-1">
+      AI가 읽는 것은<br><span class="accent">시간이 아니라 행동입니다.</span>
+    </h2>
+    <p class="section-desc reveal reveal-delay-2">
       모먼트 루미나는 아이의 디지털 활동에서 발생하는 다양한 행동 신호를 분석하여
       관심, 몰입, 변화의 흐름을 이해합니다.
       <small>Moment Lumina analyzes digital behavior signals to understand attention, interest, and behavioral change.</small>
     </p>
+    <div class="signal-grid reveal reveal-delay-3">
 
-    <div class="grid">
-     <div class="signal-card">
+      <div class="signal-card">
+        <div class="signal-num">01</div>
+        <div class="signal-video">
+          <video autoplay muted loop playsinline>
+            <source src="./app-activity.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="signal-body">
+          <h3>App Activity</h3>
+          <p>어떤 활동이 반복되고, 어떻게 연결되는지 분석합니다.</p>
+        </div>
+        <div class="signal-arrow">→</div>
+      </div>
 
-  <div class="signal-video">
-    <video autoplay muted loop playsinline>
-      <source src="./eye-tracking.mp4" type="video/mp4">
-    </video>
-  </div>
+      <div class="signal-card">
+        <div class="signal-num">02</div>
+        <div class="signal-video">
+          <video autoplay muted loop playsinline>
+            <source src="./touch-pattern.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="signal-body">
+          <h3>Touch Pattern</h3>
+          <p>반복 행동과 반응 패턴을 분석합니다.</p>
+        </div>
+        <div class="signal-arrow">→</div>
+      </div>
 
-  <div class="signal-content">
-    <h3>Eye Tracking</h3>
-    <p>
-      시선 이동과 체류 지점을 기반으로
-      몰입 흐름을 분석합니다.
-    </p>
-  </div>
+      <div class="signal-card">
+        <div class="signal-num">03</div>
+        <div class="signal-video">
+          <video autoplay muted loop playsinline>
+            <source src="./motion-signal.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="signal-body">
+          <h3>Motion Signal</h3>
+          <p>기기 움직임과 안정성 신호를 통해 사용 상황의 변화를 탐지합니다.</p>
+        </div>
+        <div class="signal-arrow">→</div>
+      </div>
 
-</div>
+      <div class="signal-card">
+        <div class="signal-num">04</div>
+        <div class="signal-video">
+          <video autoplay muted loop playsinline>
+            <source src="./eye-tracking.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="signal-body">
+          <h3>Eye Tracking <span style="font-size:12px;color:var(--mint);font-family:'Space Mono',monospace;letter-spacing:.08em">→ Attention Signal</span></h3>
+          <p>시선, 체류, 반응 신호를 통해 주의 흐름을 분석합니다.</p>
+        </div>
+        <div class="signal-arrow">→</div>
+      </div>
 
-<div class="signal-card">
-
-  <div class="signal-video">
-    <video autoplay muted loop playsinline>
-      <source src="./touch-pattern.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div class="signal-content">
-    <h3>Touch Pattern</h3>
-    <p>
-      터치 빈도, 반응 속도,
-      제스처 패턴을 분석합니다.
-    </p>
-  </div>
-
-</div>
-
-<div class="signal-card">
-
-  <div class="signal-video">
-    <video autoplay muted loop playsinline>
-      <source src="./motion-signal.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div class="signal-content">
-    <h3>Motion Signal</h3>
-    <p>
-      기기 움직임과 안정성 신호를 통해
-      행동 맥락을 파악합니다.
-    </p>
-  </div>
-
-</div>
-
-<div class="signal-card">
-
-  <div class="signal-video">
-    <video autoplay muted loop playsinline>
-      <source src="./app-activity.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div class="signal-content">
-    <h3>App Activity</h3>
-    <p>
-      앱 사용 시간,
-      실행 흐름을 분석합니다.
-    </p>
-  </div>
-
-</div>
     </div>
   </section>
 
+  <!-- FLOW -->
   <section class="section">
-    <h2 class="title">AI Behavioral<br><span class="green">Engine Flow</span></h2>
-    <p class="desc">
+    <div class="section-eyebrow reveal">AI ENGINE</div>
+    <h2 class="section-title reveal reveal-delay-1">AI Behavioral<br><span class="accent">Engine Flow</span></h2>
+    <p class="section-desc reveal reveal-delay-2">
       수집된 행동 신호는 AI 분석 엔진을 거쳐 부모가 이해할 수 있는 인사이트로 변환됩니다.
       <small>Behavior signals are transformed into meaningful parent insights through the AI engine.</small>
     </p>
+    <div class="flow-wrap reveal reveal-delay-3 flow-motion">
+      <div class="flow-line"></div>
 
-    <div class="card flow flow-motion">
-
-  <div class="flow-step reveal-step">
-    <small>01 SIGNAL COLLECTION</small>
-    <h3>디지털 행동 신호 수집</h3>
-    <p>Eye Tracking · Touch Pattern · Motion Signal · App Activity</p>
-  </div>
-
-  <div class="flow-step reveal-step">
-    <small>02 ATTENTION ANALYSIS</small>
-    <h3>주의 흐름 분석</h3>
-    <p>어디에 오래 머물렀는지, 어떤 활동에 집중이 반복되었는지 분석합니다.</p>
-  </div>
-
-  <div class="flow-step reveal-step">
-    <small>03 INTEREST DISCOVERY</small>
-    <h3>관심사 탐지</h3>
-    <p>콘텐츠, 앱, 주제 소비 패턴을 기반으로 관심 형성과 변화를 탐지합니다.</p>
-  </div>
-
-  <div class="flow-step reveal-step">
-    <small>04 BEHAVIOR CHANGE</small>
-    <h3>행동 변화 신호 탐지</h3>
-    <p>이전 기간 대비 달라진 행동 흐름과 새로운 패턴을 발견합니다.</p>
-  </div>
-
-  <div class="flow-step reveal-step">
-    <small>05 PARENT INSIGHT</small>
-    <h3>부모 인사이트 생성</h3>
-    <p>아이의 하루를 이해 가능한 이야기로 전환합니다.</p>
-  </div>
-
-</div>
+      <div class="flow-step">
+        <div class="flow-node"></div>
+        <small>01 · SIGNAL COLLECTION</small>
+        <h3>Behavioral Signal</h3>
+        <p>디지털 행동 신호 · App Activity · Touch Pattern · Motion Signal · Eye Tracking</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-node"></div>
+        <small>02 · ATTENTION ANALYSIS</small>
+        <h3>주의 흐름 분석</h3>
+        <p>어디에 오래 머물렀는지, 어떤 활동에 집중이 반복되었는지 분석합니다.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-node"></div>
+        <small>03 · INTEREST PATTERN</small>
+        <h3>관심사 패턴</h3>
+        <p>앱, 주제 소비 패턴을 기반으로 관심 형성과 변화를 탐지합니다.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-node"></div>
+        <small>04 · BEHAVIORAL INSIGHT</small>
+        <h3>반복과 변화 발견</h3>
+        <p>이전 기간 대비 달라진 행동 흐름과 새로운 패턴을 발견합니다.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-node"></div>
+        <small>05 · PARENT INSIGHT</small>
+        <h3>부모 인사이트 생성</h3>
+        <p>아이의 하루를 담은 편지 형식의 인사이트를 생성합니다.</p>
+      </div>
+    </div>
   </section>
 
+  <!-- ANALYZE -->
   <section class="section">
-    <h2 class="title">What We<br><span class="green">Analyze</span></h2>
+    <div class="section-eyebrow reveal">ANALYSIS OUTPUT</div>
+    <h2 class="section-title reveal reveal-delay-1">What We<br><span class="accent">Analyze</span></h2>
 
-    <div class="grid">
-  <div class="analysis-card">
-
-  <div class="analysis-media">
-    <video autoplay muted loop playsinline>
-      <source src="./focusdetect.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div class="analysis-info">
-
-    <div class="analysis-label">
-      ATTENTION PATTERN · 주의 패턴
-    </div>
-
-    <h3>
-      Long Focus Detected
-    </h3>
-
-    <p>
-      특정 콘텐츠에 오래 머무는
-      주의 흐름이 관찰됩니다.
-    </p>
-
-    <small>
-      Sustained attention was detected
-      within a specific content category.
-    </small>
-
-    <div class="analysis-score">
-      <span>Focus Duration</span>
-      <strong>HIGH%</strong>
-    </div>
-
-    <div class="progress">
-      <span style="width:92%"></span>
-    </div>
-
-  </div>
-
-</div>
-
-     <div class="analysis-card">
-
-  <div class="analysis-media">
-    <video autoplay muted loop playsinline>
-      <source src="./interest-discovery.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div class="analysis-info">
-
-    <div class="analysis-label">
-      INTEREST PATTERN · 관심 패턴
-    </div>
-
-    <h3>
-      Science • Learning
-    </h3>
-
-    <p>
-      새로운 관심 영역이
-      기존 활동과 함께 나타나고 있습니다.
-    </p>
-
-    <small>
-      Emerging interest clusters were
-      identified alongside existing behaviors.
-    </small>
-
-    <div class="analysis-score">
-      <span>Interest Growth</span>
-      <strong>EMERGING%</strong>
-    </div>
-
-    <div class="progress">
-      <span style="width:78%"></span>
-    </div>
-
-  </div>
-
-</div>
+    <div class="reveal reveal-delay-2">
 
       <div class="analysis-card">
-
-  <div class="analysis-media">
-    <video autoplay muted loop playsinline>
-      <source src="./behavior-change.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div class="analysis-info">
-
-    <div class="analysis-label">
-      BEHAVIOR CHANGE · 행동 변화
-    </div>
-
-    <h3>
-      Expansion Detected
-    </h3>
-
-    <p>
-      기존 활동 외
-      새로운 탐색 패턴이 감지되었습니다.
-    </p>
-
-    <small>
-      New exploration behaviors have been
-      detected beyond previous activity patterns.
-    </small>
-
-    <div class="analysis-score">
-      <span>Behavior Expansion</span>
-      <strong>NEW%</strong>
-    </div>
-
-    <div class="progress">
-      <span style="width:84%"></span>
-    </div>
-
-  </div>
-
-</div>
+        <div class="analysis-media">
+          <video autoplay muted loop playsinline>
+            <source src="./focusdetect.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="analysis-info">
+          <div class="analysis-label">ATTENTION SIGNAL · 주의 신호</div>
+          <h3>Long Focus Detected</h3>
+          <p>오래 머무는, 반복적으로 머무는 주의 흐름이 관찰됩니다.</p>
+          <small>Sustained and repeated attention was detected within a specific content category.</small>
+          <div class="stat-row">
+            <span class="stat-label">Focus Duration</span>
+            <span class="stat-val" data-target="HIGH">——</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-w="92"></div></div>
+        </div>
+      </div>
 
       <div class="analysis-card">
+        <div class="analysis-media">
+          <video autoplay muted loop playsinline>
+            <source src="./interest-discovery.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="analysis-info">
+          <div class="analysis-label">INTEREST PATTERN · 관심 패턴</div>
+          <h3>Science Learning <span style="font-size:16px;color:var(--mint)">›</span> Emerging Interest</h3>
+          <p>새로운 관심 흐름이 기존 패턴과 함께 나타나고 있습니다.</p>
+          <small>A new interest flow is emerging alongside existing patterns.</small>
+          <div class="stat-row">
+            <span class="stat-label">Interest Growth</span>
+            <span class="stat-val">EMERGING</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-w="78"></div></div>
+        </div>
+      </div>
 
-  <div class="analysis-media">
-    <video autoplay muted loop playsinline>
-      <source src="./content-diversity.mp4" type="video/mp4">
-    </video>
-  </div>
+      <div class="analysis-card">
+        <div class="analysis-media">
+          <video autoplay muted loop playsinline>
+            <source src="./behavior-change.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="analysis-info">
+          <div class="analysis-label">BEHAVIOR CHANGE · 행동 변화</div>
+          <h3>Expansion Detected</h3>
+          <p>기존 패턴에서 벗어난 새로운 탐색 흐름이 나타나고 있습니다.</p>
+          <small>New exploration flows beyond existing patterns have been detected.</small>
+          <div class="stat-row">
+            <span class="stat-label">Behavior Expansion</span>
+            <span class="stat-val">NEW</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-w="84"></div></div>
+        </div>
+      </div>
 
-  <div class="analysis-info">
+      <div class="analysis-card">
+        <div class="analysis-media">
+          <video autoplay muted loop playsinline>
+            <source src="./content-diversity.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="analysis-info">
+          <div class="analysis-label">INTEREST SHIFT · 관심 변화</div>
+          <h3>Interest Shift</h3>
+          <p>최근 관심 흐름이 이전과 달라지고 있습니다.</p>
+          <small>The recent interest flow is shifting from previous patterns.</small>
+          <div class="stat-row">
+            <span class="stat-label">Shift Signal</span>
+            <span class="stat-val">DETECTED</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" data-w="71"></div></div>
+        </div>
+      </div>
 
-    <div class="analysis-label">
-      CONTENT DIVERSITY · 콘텐츠 발견
     </div>
-
-    <h3>
-      Moderate → High
-    </h3>
-
-    <p>
-      콘텐츠와 활동 범위가
-      점차 다양해지고 있습니다.
-    </p>
-
-    <small>
-      Content consumption is becoming
-      increasingly diverse over time.
-    </small>
-
-    <div class="analysis-score">
-      <span>Diversity Index</span>
-      <strong>INCREASING%</strong>
-    </div>
-
-    <div class="progress">
-      <span style="width:71%"></span>
-    </div>
-
-  </div>
-
-</div>
   </section>
 
+  <!-- INSIGHTS -->
   <section class="section">
-    <h2 class="title">AI Generated<br><span class="green">Parent Insight</span></h2>
-    <p class="desc">
+    <div class="section-eyebrow reveal">GENERATED OUTPUT</div>
+    <h2 class="section-title reveal reveal-delay-1">AI Generated<br><span class="accent">Parent Insight</span></h2>
+    <p class="section-desc reveal reveal-delay-2">
       데이터는 숫자로 끝나지 않습니다. 모먼트는 부모가 아이와 대화를 시작할 수 있는 이야기로 바꿉니다.
       <small>Data becomes a story that helps parents understand and start meaningful conversations.</small>
     </p>
 
-    <div class="card insight">
-      <div class="insight-label">INSIGHT 01</div>
-      <h3>최근 <b>과학 콘텐츠</b>에 대한 관심이 증가하고 있습니다.</h3>
-      <p>Interest in science content has increased recently.</p>
-    </div>
-
-    <div class="card insight">
-      <div class="insight-label">INSIGHT 02</div>
-      <h3>만들고 <b>탐색하는 활동</b>에 오래 머무는 모습이 관찰됩니다.</h3>
-      <p>Your child spends more time on creating and exploring activities.</p>
-    </div>
-
-    <div class="card insight">
-      <div class="insight-label">INSIGHT 03</div>
-      <h3>새로운 <b>행동 패턴</b>이 함께 나타나고 있습니다.</h3>
-      <p>New behavioral patterns are emerging across digital activities.</p>
+    <div class="reveal reveal-delay-3">
+      <div class="insight-card">
+        <div class="insight-num">INSIGHT 01</div>
+        <h3>최근 <b>새로운 관심 흐름</b>이 나타나고 있습니다.</h3>
+        <p>A new interest flow has recently been emerging.</p>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">INSIGHT 02</div>
+        <h3>특정 활동에 <b>오래 머무는 패턴</b>이 관찰됩니다.</h3>
+        <p>A pattern of sustained attention on certain activities has been observed.</p>
+      </div>
+      <div class="insight-card">
+        <div class="insight-num">INSIGHT 03</div>
+        <h3>이전과 <b>다른 행동 흐름</b>이 함께 나타나고 있습니다.</h3>
+        <p>A different behavioral flow from before is beginning to appear.</p>
+      </div>
     </div>
   </section>
 
-  <section class="section bottom-space">
-    <div class="final-logo">3R INNOVATION</div>
-    <div class="final-title">
-      The Story Behind<br>
-      A Child’s Digital Day<span class="dot">.</span>
+  <!-- ENDING -->
+  <section class="section ending">
+    <div class="ending-ring"></div>
+    <div class="ending-ring"></div>
+    <div class="ending-ring"></div>
+    <div class="ending-brand reveal">3R INNOVATION</div>
+    <div class="ending-title reveal reveal-delay-1">
+      <span class="g">Understanding<br>a Child's<br>Digital Day<span class="dot">.</span></span>
     </div>
-    <p class="final-copy">
+    <p class="ending-copy reveal reveal-delay-2">
       아이의 하루를, 이해 가능한 이야기로<br>
       MOMENT LUMINA · AI-Powered Digital Behavior Intelligence
     </p>
   </section>
-</main>
+
+</div><!-- .page -->
 
 <footer class="footer">
-
-  <div class="footer-brand">
-    3R INNOVATION
-  </div>
-
+  <div class="footer-brand">3R INNOVATION</div>
   <div class="footer-info">
-
-    <div>
-      <span>서울사무실</span>
-      서울 서초구 · 서울AI허브
-    </div>
-
-    <div>
-      <span>대전사무실</span>
-      대전 유성구 · 대전TIPS타운
-    </div>
-
-    <div>
-      <span>Email</span>
-      moment-care@momentlumina.com
-    </div>
-
+    <div><span>서울사무실</span>서울 서초구 · 서울AI허브</div>
+    <div><span>대전사무실</span>대전 유성구 · 대전TIPS타운</div>
+    <div><span>Email</span>moment-care@momentlumina.com</div>
   </div>
-
 </footer>
-<script>
-const flow = document.querySelector('.flow-motion');
 
-const flowObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('active');
+<script>
+/* ── CURSOR ── */
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+});
+function animRing(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+
+/* ── CANVAS GRID + PARTICLES ── */
+const canvas=document.getElementById('bg-canvas');
+const ctx=canvas.getContext('2d');
+let W,H,particles=[];
+function resize(){
+  W=canvas.width=window.innerWidth;
+  H=canvas.height=document.body.scrollHeight;
+}
+resize();
+window.addEventListener('resize',resize);
+
+class Particle{
+  constructor(){this.reset()}
+  reset(){
+    this.x=Math.random()*W;
+    this.y=Math.random()*H;
+    this.vx=(Math.random()-.5)*.22;
+    this.vy=(Math.random()-.5)*.22;
+    this.r=Math.random()*1.4+.3;
+    this.alpha=Math.random()*.5+.1;
+    this.life=0;this.maxLife=200+Math.random()*300;
+  }
+  update(){
+    this.x+=this.vx;this.y+=this.vy;this.life++;
+    if(this.life>this.maxLife||this.x<0||this.x>W||this.y<0||this.y>H)this.reset();
+  }
+  draw(){
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(67,230,208,${this.alpha})`;ctx.fill();
+  }
+}
+
+for(let i=0;i<80;i++) particles.push(new Particle());
+
+function drawGrid(){
+  ctx.clearRect(0,0,W,H);
+  /* horizontal lines */
+  ctx.strokeStyle='rgba(67,230,208,.04)';ctx.lineWidth=1;
+  for(let y=0;y<H;y+=80){
+    ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
+  }
+  /* vertical lines */
+  for(let x=0;x<W;x+=80){
+    ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();
+  }
+  /* particles */
+  particles.forEach(p=>{p.update();p.draw()});
+}
+
+let raf;
+function loop(){drawGrid();raf=requestAnimationFrame(loop)}
+loop();
+
+/* ── SCROLL REVEAL ── */
+const revealEls=document.querySelectorAll('.reveal');
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.12});
+revealEls.forEach(el=>obs.observe(el));
+
+/* ── FLOW ANIMATION ── */
+const flowWrap=document.querySelector('.flow-motion');
+const flowObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('active')});
+},{threshold:.2});
+if(flowWrap)flowObs.observe(flowWrap);
+
+/* ── PROGRESS BARS on scroll ── */
+const progObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const fills=e.target.querySelectorAll('.progress-fill');
+      fills.forEach(f=>{
+        f.style.width=(f.dataset.w||'0')+'%';
+      });
+      progObs.unobserve(e.target);
     }
   });
-}, {
-  threshold: 0.3
-});
+},{threshold:.3});
+document.querySelectorAll('.analysis-card').forEach(c=>progObs.observe(c));
 
-if(flow){
-  flowObserver.observe(flow);
-}
+/* ── PARALLAX HERO RING ── */
+window.addEventListener('scroll',()=>{
+  const y=window.scrollY;
+  const heroRing=document.querySelector('.hero-ring');
+  if(heroRing)heroRing.style.transform=`translate(-50%,calc(-42% + ${y*.15}px))`;
+  /* resize canvas when page grows */
+  if(document.body.scrollHeight!==H) resize();
+});
 </script>
 </body>
 </html>
