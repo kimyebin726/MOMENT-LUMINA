@@ -496,105 +496,141 @@ h1{
   50%{box-shadow:0 0 22px rgba(67,230,208,.9)}
 }
 
-/* ── RESPONSIVE · Galaxy S22U (360px+) ── */
+/* ── RESPONSIVE · 모든 모바일 공통 ── */
 @media(max-width:768px){
-  /* 커서 숨김 (터치) */
   #cursor,#cursor-ring{display:none}
-  html,body{cursor:auto}
+  html,body{cursor:auto;overflow-x:hidden}
 
   /* 헤더 */
-  .header{padding:16px 18px}
-  .logo img{width:100px}
-  .header-tag{font-size:8px;letter-spacing:.12em}
+  .header{padding:14px 16px}
+  .logo img{width:96px}
+  .header-tag{font-size:7px;letter-spacing:.1em}
 
-  /* 섹션 패딩 */
-  .section{padding:80px 18px 48px}
-  .hero{padding-top:120px;min-height:100svh}
+  /* 섹션 */
+  .section{padding:72px 16px 44px}
 
-  /* 히어로 링 크기 줄임 */
-  .hero-ring{width:280px;height:280px}
-  .hero-ring::before{width:200px;height:200px}
-
-  /* 히어로 아이브로우 줄바꿈 방지 */
-  .hero-eyebrow{
-    font-size:8px;letter-spacing:.18em;
-    white-space:nowrap;overflow:hidden;
-    text-overflow:ellipsis;
-    max-width:100%;
+  /* 히어로 */
+  .hero{
+    padding:110px 16px 48px;
+    min-height:100svh;
+    overflow:hidden;
   }
-  .hero-eyebrow span{margin:0 4px}
+  .hero-ring{width:260px;height:260px}
+  .hero-ring::before{width:180px;height:180px}
 
-  /* h1 */
-  h1{font-size:clamp(52px,18vw,72px);letter-spacing:-.05em}
-  .h1-sub{font-size:clamp(52px,18vw,72px)}
+  /* 아이브로우 */
+  .hero-eyebrow{
+    font-size:7px;letter-spacing:.14em;
+    white-space:normal;
+    word-break:keep-all;
+    line-height:1.6;
+    padding:0 4px;
+  }
+  .hero-eyebrow span{margin:0 3px}
+
+  /* ★ 핵심 수정: h1 절대 잘리지 않게 */
+  h1{
+    font-size:clamp(36px,12vw,56px);
+    line-height:.92;
+    letter-spacing:-.04em;
+    word-break:keep-all;
+    overflow-wrap:break-word;
+    width:100%;
+  }
+  .h1-sub{
+    font-size:clamp(36px,12vw,56px);
+    letter-spacing:-.04em;
+    display:block;
+    width:100%;
+  }
 
   /* hero-copy */
-  .hero-copy{font-size:15px;margin-top:20px}
-  .hero-copy span{font-size:11px}
+  .hero-copy{font-size:14px;margin-top:18px;padding:0 4px}
+  .hero-copy span{font-size:11px;letter-spacing:.02em}
 
   /* scroll cue */
-  .scroll-cue{margin-top:36px}
+  .scroll-cue{margin-top:28px}
 
-  /* 섹션 타이틀 */
-  .section-eyebrow{font-size:8px;letter-spacing:.22em}
-  .section-title{font-size:clamp(24px,8vw,34px);margin-bottom:12px}
-  .section-desc{font-size:13px;margin-bottom:22px}
+  /* 섹션 공통 */
+  .section-eyebrow{font-size:7px;letter-spacing:.2em}
+  .section-title{
+    font-size:clamp(22px,7vw,32px);
+    margin-bottom:10px;
+    word-break:keep-all;
+  }
+  .section-desc{font-size:13px;margin-bottom:20px}
   .section-desc small{font-size:11px}
 
   /* 시그널 카드 */
-  .signal-card{padding:16px 14px;gap:14px}
-  .signal-num{font-size:8px;min-width:18px}
-  .signal-video{width:58px;height:58px;border-radius:10px}
-  .signal-body h3{font-size:17px;margin-bottom:4px}
-  .signal-body p{font-size:12px}
-  .signal-arrow{font-size:15px}
+  .signal-card{padding:14px 12px;gap:12px}
+  .signal-num{font-size:7px;min-width:16px}
+  .signal-video{width:54px;height:54px;border-radius:10px}
+  .signal-body h3{font-size:16px;margin-bottom:3px}
+  .signal-body p{font-size:11px;line-height:1.5}
+  .signal-arrow{font-size:14px}
 
   /* 플로우 */
-  .flow-wrap{padding:20px 16px}
-  .flow-line{left:32px}
-  .flow-step{padding:14px 0 16px 44px}
-  .flow-node{left:22px;width:12px;height:12px}
-  .flow-step small{font-size:8px;letter-spacing:.16em}
-  .flow-step h3{font-size:16px;margin:5px 0 4px}
-  .flow-step p{font-size:12px}
+  .flow-wrap{padding:18px 14px}
+  .flow-line{left:28px}
+  .flow-step{padding:12px 0 14px 40px}
+  .flow-node{left:19px;width:11px;height:11px}
+  .flow-step small{font-size:7px;letter-spacing:.14em}
+  .flow-step h3{font-size:15px;margin:4px 0 3px}
+  .flow-step p{font-size:11px;line-height:1.5}
 
   /* 분석 카드 */
   .analysis-card{
     flex-direction:column;
-    padding:18px 16px;
-    margin-bottom:14px;
-    border-radius:16px;
+    padding:16px 14px;
+    margin-bottom:12px;
+    border-radius:14px;
   }
-  .analysis-media{width:100%;height:160px;border-radius:12px}
-  .analysis-label{font-size:8px;letter-spacing:.2em}
-  .analysis-info h3{font-size:20px;margin-bottom:8px}
+  .analysis-media{width:100%;height:150px;border-radius:10px}
+  .analysis-label{font-size:7px;letter-spacing:.18em}
+  .analysis-info h3{font-size:18px;margin-bottom:7px;word-break:keep-all}
   .analysis-info p{font-size:13px}
-  .analysis-info small{font-size:11px;margin-bottom:14px}
+  .analysis-info small{font-size:11px;margin-bottom:12px}
   .stat-label,.stat-val{font-size:10px}
 
   /* 인사이트 */
-  .insight-card{padding:20px 18px}
-  .insight-num{font-size:8px;letter-spacing:.18em}
-  .insight-card h3{font-size:17px;line-height:1.4}
-  .insight-card p{font-size:12px}
+  .insight-card{padding:18px 16px}
+  .insight-num{font-size:7px;letter-spacing:.16em}
+  .insight-card h3{font-size:16px;line-height:1.45;word-break:keep-all}
+  .insight-card p{font-size:11px}
 
   /* 엔딩 */
-  .ending{min-height:70svh;padding:80px 18px 60px}
-  .ending-ring:nth-child(1){width:320px;height:320px}
-  .ending-ring:nth-child(2){width:220px;height:220px}
-  .ending-ring:nth-child(3){width:140px;height:140px}
-  .ending-brand{font-size:9px;letter-spacing:.35em;margin-bottom:24px}
-  .ending-title{font-size:clamp(32px,11vw,52px);margin-bottom:20px}
-  .ending-copy{font-size:11px}
+  .ending{min-height:70svh;padding:72px 16px 56px}
+  .ending-ring:nth-child(1){width:300px;height:300px}
+  .ending-ring:nth-child(2){width:200px;height:200px}
+  .ending-ring:nth-child(3){width:120px;height:120px}
+  .ending-brand{font-size:8px;letter-spacing:.3em;margin-bottom:20px}
+  .ending-title{
+    font-size:clamp(28px,10vw,46px);
+    margin-bottom:18px;
+    word-break:keep-all;
+  }
+  .ending-copy{font-size:10px;word-break:keep-all}
 
   /* 푸터 */
-  .footer{margin-top:60px;padding:40px 18px 56px}
-  .footer-brand{font-size:9px;letter-spacing:.28em;margin-bottom:20px}
-  .footer-info{font-size:12px;gap:12px}
-  .footer-info span{font-size:8px;letter-spacing:.15em}
+  .footer{margin-top:50px;padding:36px 16px 52px}
+  .footer-brand{font-size:8px;letter-spacing:.25em;margin-bottom:18px}
+  .footer-info{font-size:11px;gap:10px}
+  .footer-info span{font-size:7px;letter-spacing:.13em}
 
-  /* 비디오 섹션 */
-  .video-wrap{height:56vw;min-height:220px}
+  /* 비디오 */
+  .video-wrap{height:56vw;min-height:200px}
+}
+
+/* ── 초소형 폰 (320px 이하, 갤럭시 폴드 등) ── */
+@media(max-width:360px){
+  h1{font-size:clamp(30px,10vw,44px)}
+  .h1-sub{font-size:clamp(30px,10vw,44px)}
+  .section{padding:64px 14px 36px}
+  .hero{padding:100px 14px 40px}
+  .signal-video{width:46px;height:46px}
+  .signal-body h3{font-size:14px}
+  .analysis-info h3{font-size:16px}
+  .ending-title{font-size:clamp(24px,9vw,36px)}
 }
 </style>
 </head>
