@@ -950,6 +950,83 @@ h1{
   background:linear-gradient(90deg,#86efac,#4ADE80);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
+
+/* ══ PRIVACY SECTION ══ */
+.privacy-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+  margin-top:8px;
+}
+.privacy-item{
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;
+  padding:28px 16px 24px;
+  border:1px solid rgba(74,222,128,.16);
+  border-radius:20px;
+  background:linear-gradient(160deg,rgba(74,222,128,.06) 0%,rgba(5,12,9,.88) 60%);
+  backdrop-filter:blur(14px);
+  cursor:none;
+  transition:border-color .35s,box-shadow .35s,transform .35s;
+}
+.privacy-item:hover{
+  border-color:rgba(74,222,128,.38);
+  box-shadow:0 0 32px rgba(74,222,128,.1);
+  transform:translateY(-4px);
+}
+.privacy-icon{
+  width:56px;height:56px;margin-bottom:18px;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:16px;
+  border:1px solid rgba(74,222,128,.22);
+  background:rgba(74,222,128,.06);
+  flex-shrink:0;
+}
+.privacy-icon svg{
+  width:28px;height:28px;
+  stroke:#4ADE80;stroke-width:1.5;
+  fill:none;stroke-linecap:round;stroke-linejoin:round;
+}
+.privacy-label{
+  font-family:'Space Mono',monospace;
+  font-size:8px;letter-spacing:.2em;
+  color:rgba(74,222,128,.7);
+  margin-bottom:8px;
+}
+.privacy-item h4{
+  font-size:16px;font-weight:700;
+  letter-spacing:-.02em;line-height:1.4;
+  color:rgba(255,255,255,.95);
+  word-break:keep-all;
+}
+.privacy-item p{
+  margin-top:8px;font-size:12px;
+  line-height:1.65;color:rgba(255,255,255,.55);
+  word-break:keep-all;
+}
+.privacy-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:10px;padding:4px 10px;
+  border:1px solid rgba(74,222,128,.25);
+  border-radius:999px;
+  font-family:'Space Mono',monospace;
+  font-size:8px;letter-spacing:.12em;
+  color:rgba(74,222,128,.8);
+}
+.privacy-badge::before{
+  content:'';width:5px;height:5px;border-radius:50%;
+  background:#4ADE80;
+  box-shadow:0 0 6px rgba(74,222,128,.8);
+  animation:lsbBlink 1.4s infinite;
+}
+@media(max-width:768px){
+  .privacy-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .privacy-item{padding:20px 12px 18px}
+  .privacy-icon{width:46px;height:46px;border-radius:12px}
+  .privacy-icon svg{width:22px;height:22px}
+  .privacy-item h4{font-size:14px}
+  .privacy-item p{font-size:11px}
+}
 </style>
 </head>
 <body>
@@ -1242,6 +1319,76 @@ h1{
     </div>
   </section>
 
+
+  <!-- PRIVACY -->
+  <section class="section sec-privacy">
+    <div class="section-eyebrow reveal">PRIVACY FIRST · 개인정보 보호</div>
+    <h2 class="section-title reveal reveal-delay-1">
+      아이의 데이터,<br><span class="accent" style="background:linear-gradient(90deg,#4ADE80,#86efac);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">철저히 보호합니다.</span>
+    </h2>
+    <p class="section-desc reveal reveal-delay-2" style="color:rgba(255,255,255,.85);">
+      모먼트 루미나는 행동 패턴만을 분석하며, 개인적인 콘텐츠는 절대 수집하지 않습니다.
+      <small>Moment Lumina analyzes only behavioral patterns — never personal content.</small>
+    </p>
+
+    <div class="privacy-grid reveal reveal-delay-3">
+
+      <div class="privacy-item">
+        <div class="privacy-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            <line x1="4" y1="4" x2="20" y2="20"/>
+          </svg>
+        </div>
+        <div class="privacy-label">NOT COLLECTED</div>
+        <h4>메시지 내용<br>수집 안함</h4>
+        <p>대화 내용은 기기 밖으로 전송되지 않습니다.</p>
+        <div class="privacy-badge">PROTECTED</div>
+      </div>
+
+      <div class="privacy-item">
+        <div class="privacy-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+            <line x1="3" y1="3" x2="21" y2="21"/>
+          </svg>
+        </div>
+        <div class="privacy-label">NOT COLLECTED</div>
+        <h4>사진·영상<br>수집 안함</h4>
+        <p>미디어 파일은 분석 대상에 포함되지 않습니다.</p>
+        <div class="privacy-badge">PROTECTED</div>
+      </div>
+
+      <div class="privacy-item">
+        <div class="privacy-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+            <line x1="1" y1="1" x2="23" y2="23"/>
+          </svg>
+        </div>
+        <div class="privacy-label">NOT COLLECTED</div>
+        <h4>사적인 대화<br>수집 안함</h4>
+        <p>개인 간 커뮤니케이션 내용은 수집하지 않습니다.</p>
+        <div class="privacy-badge">PROTECTED</div>
+      </div>
+
+      <div class="privacy-item">
+        <div class="privacy-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <div class="privacy-label">ON-DEVICE</div>
+        <h4>기기 내 분석 및<br>암호화 처리</h4>
+        <p>모든 분석은 기기 내에서 이루어지며 암호화됩니다.</p>
+        <div class="privacy-badge">ENCRYPTED</div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- APP SCREENS -->
   <section class="section app-section sec-app">
