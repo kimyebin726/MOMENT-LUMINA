@@ -9,15 +9,15 @@
 
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --mint:#39D98A;
-  --mint-dim:rgba(57,217,138,.18);
-  --mint-glow:rgba(57,217,138,.55);
-  --cyan:#2ECC71;
-  --deep:#030a06;
-  --panel:rgba(3,12,6,.82);
-  --line:rgba(57,217,138,.2);
-  --muted:rgba(255,255,255,.52);
-  --white:#f4fff7;
+  --mint:#4ADE80;
+  --mint-dim:rgba(74,222,128,.18);
+  --mint-glow:rgba(74,222,128,.75);
+  --cyan:#34d399;
+  --deep:#070b0a;
+  --panel:rgba(5,10,8,.88);
+  --line:rgba(74,222,128,.2);
+  --muted:rgba(255,255,255,.55);
+  --white:#ffffff;
 }
 
 html,body{
@@ -37,11 +37,11 @@ html,body{
   transform:translate(-50%,-50%);
   transition:transform .1s,width .2s,height .2s,opacity .2s;
   mix-blend-mode:screen;
-  box-shadow:0 0 18px var(--mint-glow),0 0 40px rgba(57,217,138,.3);
+  box-shadow:0 0 18px var(--mint-glow),0 0 40px rgba(74,222,128,.3);
 }
 #cursor-ring{
   position:fixed;width:36px;height:36px;
-  border-radius:50%;border:1px solid rgba(57,217,138,.55);
+  border-radius:50%;border:1px solid rgba(74,222,128,.55);
   pointer-events:none;z-index:9998;
   transform:translate(-50%,-50%);
   transition:transform .18s ease,width .25s,height .25s,border-color .25s;
@@ -57,14 +57,14 @@ body:has(a:hover) #cursor-ring,body:has(.signal-card:hover) #cursor-ring{
 /* ── CANVAS BG ── */
 #bg-canvas{
   position:fixed;inset:0;z-index:0;
-  pointer-events:none;opacity:.55;
+  pointer-events:none;opacity:.62;
 }
 
 /* ── NOISE OVERLAY ── */
 .noise{
   position:fixed;inset:0;z-index:1;pointer-events:none;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+  opacity:.2;
 }
 
 /* ── SCANLINES ── */
@@ -74,8 +74,8 @@ body:has(a:hover) #cursor-ring,body:has(.signal-card:hover) #cursor-ring{
     0deg,
     transparent,
     transparent 2px,
-    rgba(0,0,0,.06) 2px,
-    rgba(0,0,0,.06) 4px
+    rgba(0,0,0,.05) 2px,
+    rgba(0,0,0,.05) 4px
   );
 }
 
@@ -118,7 +118,7 @@ body:has(a:hover) #cursor-ring,body:has(.signal-card:hover) #cursor-ring{
 }
 .hero-eyebrow span{
   display:inline-block;margin:0 8px;
-  color:rgba(57,217,138,.4);
+  color:rgba(74,222,128,.4);
 }
 h1{
   font-size:clamp(52px,15vw,108px);
@@ -134,36 +134,38 @@ h1{
 }
 .dot{
   -webkit-text-fill-color:var(--mint);
-  text-shadow:0 0 30px var(--mint-glow),0 0 60px rgba(57,217,138,.4);
+  text-shadow:0 0 30px var(--mint-glow),0 0 60px rgba(74,222,128,.4);
   color:var(--mint);
 }
 .hero-copy{
-  margin-top:32px;font-size:17px;line-height:1.65;
-  color:rgba(255,255,255,.85);
+  margin-top:32px;font-size:19px;line-height:1.7;
+  color:rgba(255,255,255,.95);
+  letter-spacing:-.01em;
   opacity:0;animation:fadeUp .8s .8s ease forwards;
 }
 .hero-copy span{
-  display:block;margin-top:8px;font-size:13px;
-  color:var(--muted);font-family:'Space Mono',monospace;
-  letter-spacing:.05em;
+  display:block;margin-top:10px;font-size:15px;
+  color:rgba(255,255,255,.72);
+  letter-spacing:0;
+  line-height:1.7;
 }
 .hero-ring{
   position:absolute;
   width:480px;height:480px;
   border-radius:50%;
-  border:1px solid rgba(57,217,138,.06);
+  border:1px solid rgba(74,222,128,.06);
   top:50%;left:50%;transform:translate(-50%,-42%);
   animation:spin 38s linear infinite;pointer-events:none;
 }
 .hero-ring::before{
   content:'';position:absolute;
   width:340px;height:340px;
-  border-radius:50%;border:1px solid rgba(57,217,138,.1);
+  border-radius:50%;border:1px solid rgba(74,222,128,.1);
   top:50%;left:50%;transform:translate(-50%,-50%);
 }
 .hero-ring::after{
   content:'';position:absolute;inset:16px;
-  border-radius:50%;border:1px dashed rgba(57,217,138,.07);
+  border-radius:50%;border:1px dashed rgba(74,222,128,.07);
 }
 .scroll-cue{
   margin-top:64px;display:flex;flex-direction:column;align-items:center;gap:9px;
@@ -217,35 +219,35 @@ h1{
   position:relative;overflow:hidden;
   display:flex;align-items:center;gap:22px;
   padding:24px 22px;
-  border:0;border-bottom:1px solid rgba(57,217,138,.1);
+  border:0;border-bottom:1px solid rgba(74,222,128,.1);
   background:transparent;
   transition:all .4s cubic-bezier(.23,1,.32,1);
   cursor:none;
 }
-.signal-card:first-child{border-top:1px solid rgba(57,217,138,.1)}
+.signal-card:first-child{border-top:1px solid rgba(74,222,128,.1)}
 .signal-card::before{
   content:'';position:absolute;left:0;top:0;bottom:0;width:0;
-  background:linear-gradient(90deg,rgba(57,217,138,.08),transparent);
+  background:linear-gradient(90deg,rgba(74,222,128,.08),transparent);
   transition:width .4s cubic-bezier(.23,1,.32,1);
 }
 .signal-card:hover::before{width:100%}
-.signal-card:hover{border-bottom-color:rgba(57,217,138,.35)}
+.signal-card:hover{border-bottom-color:rgba(74,222,128,.35)}
 
 .signal-num{
   font-family:'Space Mono',monospace;
   font-size:9px;letter-spacing:.1em;
-  color:rgba(57,217,138,.4);
+  color:rgba(74,222,128,.4);
   min-width:24px;align-self:flex-start;padding-top:4px;
 }
 .signal-video{
   width:72px;height:72px;flex-shrink:0;
   border-radius:14px;overflow:hidden;
-  border:1px solid rgba(57,217,138,.22);
+  border:1px solid rgba(74,222,128,.18);
   position:relative;
 }
 .signal-video::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(57,217,138,.05),transparent);
+  background:linear-gradient(135deg,rgba(74,222,128,.05),transparent);
 }
 .signal-video video{width:100%;height:100%;object-fit:cover;display:block}
 .signal-body{flex:1}
@@ -257,7 +259,7 @@ h1{
 .signal-card:hover .signal-body h3{color:var(--mint)}
 .signal-body p{font-size:13px;line-height:1.55;color:var(--muted)}
 .signal-arrow{
-  font-size:18px;color:rgba(57,217,138,.3);
+  font-size:18px;color:rgba(74,222,128,.3);
   transition:transform .35s,color .35s;
   margin-right:4px;
 }
@@ -278,8 +280,8 @@ h1{
 .flow-line{
   position:absolute;left:40px;top:52px;
   width:1px;height:0;
-  background:linear-gradient(to bottom,var(--mint),rgba(57,217,138,.08));
-  box-shadow:0 0 14px rgba(57,217,138,.4);
+  background:linear-gradient(to bottom,var(--mint),rgba(74,222,128,.08));
+  box-shadow:0 0 14px rgba(74,222,128,.4);
   transition:height 2s cubic-bezier(.23,1,.32,1);
 }
 .flow-wrap.active .flow-line{height:calc(100% - 80px)}
@@ -300,12 +302,12 @@ h1{
   position:absolute;left:29px;top:22px;
   width:14px;height:14px;border-radius:50%;
   background:var(--deep);
-  border:2px solid rgba(57,217,138,.4);
+  border:2px solid rgba(74,222,128,.4);
   transition:border-color .3s,box-shadow .3s;
 }
 .flow-wrap.active .flow-node{
   border-color:var(--mint);
-  box-shadow:0 0 16px rgba(57,217,138,.6);
+  box-shadow:0 0 16px rgba(74,222,128,.6);
   animation:nodeGlow 2s ease-in-out infinite;
 }
 .flow-step small{
@@ -320,30 +322,30 @@ h1{
   position:relative;overflow:hidden;
   display:flex;gap:22px;
   padding:24px;
-  border:1px solid rgba(57,217,138,.12);
+  border:1px solid rgba(74,222,128,.18);
   border-radius:20px;
-  background:rgba(4,18,22,.6);
+  background:rgba(5,12,9,.82);
   backdrop-filter:blur(14px);
   margin-bottom:16px;
   cursor:none;
   transition:border-color .4s,box-shadow .4s,transform .4s cubic-bezier(.23,1,.32,1);
 }
 .analysis-card:hover{
-  border-color:rgba(57,217,138,.45);
-  box-shadow:0 0 40px rgba(57,217,138,.12),inset 0 0 40px rgba(57,217,138,.04);
+  border-color:rgba(74,222,128,.45);
+  box-shadow:0 0 40px rgba(74,222,128,.12),inset 0 0 40px rgba(74,222,128,.04);
   transform:translateY(-3px);
 }
 .analysis-card::after{
   content:'';position:absolute;
   top:0;left:-100%;width:60%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(57,217,138,.04),transparent);
+  background:linear-gradient(90deg,transparent,rgba(74,222,128,.04),transparent);
   transition:left .6s ease;
 }
 .analysis-card:hover::after{left:160%}
 
 .analysis-media{
   width:180px;flex-shrink:0;border-radius:14px;overflow:hidden;
-  background:#020c0f;border:1px solid rgba(57,217,138,.15);
+  background:#020c0f;border:1px solid rgba(74,222,128,.14);
 }
 .analysis-media video{width:100%;height:100%;object-fit:cover;display:block}
 
@@ -370,8 +372,8 @@ h1{
 }
 .progress-fill{
   height:100%;border-radius:999px;width:0;
-  background:linear-gradient(90deg,#217074,var(--mint),#00d4ff);
-  box-shadow:0 0 14px rgba(57,217,138,.5);
+  background:linear-gradient(90deg,#166534,var(--mint),#86efac);
+  box-shadow:0 0 14px rgba(74,222,128,.5);
   transition:width 1.4s cubic-bezier(.23,1,.32,1);
 }
 
@@ -379,7 +381,7 @@ h1{
 .insight-card{
   position:relative;overflow:hidden;
   padding:26px 28px;
-  border:1px solid rgba(57,217,138,.14);
+  border:1px solid rgba(74,222,128,.18);
   border-radius:18px;
   background:rgba(4,18,22,.72);
   backdrop-filter:blur(14px);
@@ -393,8 +395,8 @@ h1{
   opacity:0;transition:opacity .35s;
 }
 .insight-card:hover{
-  border-color:rgba(57,217,138,.38);
-  box-shadow:0 0 30px rgba(57,217,138,.1);
+  border-color:rgba(74,222,128,.38);
+  box-shadow:0 0 30px rgba(74,222,128,.1);
   transform:translateX(4px);
 }
 .insight-card:hover::before{opacity:1}
@@ -406,7 +408,7 @@ h1{
 }
 .insight-num::after{
   content:'';flex:1;height:1px;
-  background:linear-gradient(to right,rgba(57,217,138,.3),transparent);
+  background:linear-gradient(to right,rgba(74,222,128,.3),transparent);
 }
 .insight-card h3{
   font-size:21px;letter-spacing:-.03em;line-height:1.35;margin-bottom:8px;
@@ -427,7 +429,7 @@ h1{
 }
 .ending-ring{
   position:absolute;
-  border-radius:50%;border:1px solid rgba(57,217,138,.07);
+  border-radius:50%;border:1px solid rgba(74,222,128,.07);
   pointer-events:none;
 }
 .ending-ring:nth-child(1){width:600px;height:600px;animation:spin 50s linear infinite}
@@ -454,7 +456,7 @@ h1{
 /* ── FOOTER ── */
 .footer{
   margin-top:100px;padding:56px 28px 72px;
-  border-top:1px solid rgba(57,217,138,.1);
+  border-top:1px solid rgba(74,222,128,.1);
   text-align:center;
 }
 .footer-brand{
@@ -493,8 +495,8 @@ h1{
   50%{opacity:1;transform:translateY(7px)}
 }
 @keyframes nodeGlow{
-  0%,100%{box-shadow:0 0 10px rgba(57,217,138,.5)}
-  50%{box-shadow:0 0 22px rgba(57,217,138,.9)}
+  0%,100%{box-shadow:0 0 10px rgba(74,222,128,.5)}
+  50%{box-shadow:0 0 22px rgba(74,222,128,.9)}
 }
 
 /* ── RESPONSIVE · 모든 모바일 공통 ── */
@@ -742,8 +744,8 @@ h1{
 .live-stream-bar{
   display:flex;align-items:center;gap:10px;
   padding:11px 16px;margin-bottom:22px;
-  border:1px solid rgba(57,217,138,.15);border-radius:12px;
-  background:rgba(57,217,138,.04);
+  border:1px solid rgba(74,222,128,.14);border-radius:12px;
+  background:rgba(74,222,128,.04);
 }
 .lsb-dot{width:6px;height:6px;border-radius:50%;background:var(--mint);
   box-shadow:0 0 8px var(--mint-glow);animation:lsbBlink 1.4s infinite}
@@ -752,7 +754,7 @@ h1{
 .lsb-canvas-wrap{flex:1;height:28px;overflow:hidden}
 .lsb-canvas-wrap canvas{width:100%;height:100%;display:block}
 .lsb-val{font-family:'Space Mono',monospace;font-size:9px;
-  color:rgba(57,217,138,.7);white-space:nowrap}
+  color:rgba(74,222,128,.7);white-space:nowrap}
 
 /* Signal 카드 미니 파형 */
 .signal-mini-wave{width:56px;height:30px;flex-shrink:0}
@@ -772,8 +774,8 @@ h1{
 /* Insight 섹션 — 멀티 스트림 */
 .insight-stream{
   padding:14px 16px;margin-bottom:22px;
-  border:1px solid rgba(57,217,138,.13);border-radius:14px;
-  background:rgba(57,217,138,.03);
+  border:1px solid rgba(74,222,128,.13);border-radius:14px;
+  background:rgba(74,222,128,.04);
 }
 .insight-stream-label{
   font-family:'Space Mono',monospace;font-size:8px;
@@ -785,7 +787,7 @@ h1{
 
 /* ══ APP SCREEN SECTION ══ */
 .app-section{
-  background:linear-gradient(to bottom,rgba(3,10,6,0),rgba(57,217,138,.04),rgba(3,10,6,0));
+  background:linear-gradient(to bottom,rgba(3,10,6,0),rgba(74,222,128,.04),rgba(3,10,6,0));
 }
 .app-section-eyebrow{
   font-family:'Space Mono',monospace;font-size:8px;
@@ -796,8 +798,11 @@ h1{
   letter-spacing:-.04em;font-weight:800;margin-bottom:12px;
 }
 .app-section-desc{
-  font-size:14px;line-height:1.8;
-  color:rgba(255,255,255,.7);margin-bottom:36px;
+  font-size:16px;line-height:1.9;
+  color:rgba(255,255,255,.9);
+  letter-spacing:-.01em;
+  word-break:keep-all;
+  margin-bottom:36px;
 }
 .app-section-desc small{
   display:block;margin-top:6px;font-size:11px;
@@ -808,8 +813,8 @@ h1{
 .app-mockup-5{
   width:100%;border-radius:16px;overflow:hidden;
   margin-bottom:32px;
-  box-shadow:0 0 60px rgba(57,217,138,.1);
-  border:1px solid rgba(57,217,138,.12);
+  box-shadow:0 0 60px rgba(74,222,128,.1);
+  border:1px solid rgba(74,222,128,.18);
 }
 .app-mockup-5 img{width:100%;display:block}
 
@@ -820,15 +825,15 @@ h1{
 }
 .app-screen-item{
   position:relative;border-radius:20px;overflow:hidden;
-  border:1px solid rgba(57,217,138,.14);
+  border:1px solid rgba(74,222,128,.18);
   background:#000;
   transition:transform .35s,box-shadow .35s;
   cursor:none;
 }
 .app-screen-item:hover{
   transform:translateY(-4px) scale(1.02);
-  box-shadow:0 12px 40px rgba(57,217,138,.18);
-  border-color:rgba(57,217,138,.4);
+  box-shadow:0 12px 40px rgba(74,222,128,.18);
+  border-color:rgba(74,222,128,.4);
 }
 .app-screen-item img{width:100%;display:block}
 .app-screen-item.wide{grid-column:1/-1}
@@ -840,15 +845,15 @@ h1{
 }
 .app-profile-item{
   border-radius:16px;overflow:hidden;
-  border:1px solid rgba(57,217,138,.14);
+  border:1px solid rgba(74,222,128,.18);
   background:#000;
   transition:transform .35s,box-shadow .35s;
   cursor:none;
 }
 .app-profile-item:hover{
   transform:translateY(-3px);
-  box-shadow:0 10px 32px rgba(57,217,138,.15);
-  border-color:rgba(57,217,138,.38);
+  box-shadow:0 10px 32px rgba(74,222,128,.15);
+  border-color:rgba(74,222,128,.38);
 }
 .app-profile-item img{width:100%;display:block}
 .app-profile-label{
@@ -866,6 +871,84 @@ h1{
 }
 @media(max-width:400px){
   .app-profiles-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ── 섹션별 배경 그라디언트 (교차 밝기) ── */
+.section:nth-of-type(odd){
+  background:radial-gradient(ellipse at 100% 30%,rgba(74,222,128,.1) 0%,transparent 55%);
+}
+.section:nth-of-type(even){
+  background:radial-gradient(ellipse at 0% 70%,rgba(74,222,128,.1) 0%,transparent 55%);
+}
+.app-section{
+  background:radial-gradient(ellipse at 95% 50%,rgba(74,222,128,.16) 0%,transparent 50%) !important;
+}
+
+/* ── Grain + Glow 카드 스타일 ── */
+.card,.flow-wrap,.analysis-card,.insight,.insight-card,.signal-card{
+  position:relative;
+}
+.card::before,.flow-wrap::before,.analysis-card::before,.insight::before{
+  content:'';
+  position:absolute;inset:0;border-radius:inherit;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.06'/%3E%3C/svg%3E");
+  opacity:.5;pointer-events:none;z-index:0;
+}
+.card>*,.flow-wrap>*,.analysis-card>*,.insight>*{position:relative;z-index:1;}
+
+/* ══ 섹션별 포인트 컬러 ══ */
+
+/* Signal 섹션 — 에메랄드 그린 */
+.sec-signal .section-eyebrow,
+.sec-signal .section-title .accent,
+.sec-signal .signal-body h3:hover,
+.sec-signal .live-stream-bar .lsb-dot,
+.sec-signal .lsb-label,
+.sec-signal .lsb-val { color:#4ADE80; }
+.sec-signal .signal-card::before { background:linear-gradient(90deg,rgba(74,222,128,.07),transparent); }
+.sec-signal .signal-card:hover { border-bottom-color:rgba(74,222,128,.4); }
+
+/* Flow 섹션 — 라임 옐로우 그린 */
+.sec-flow .section-eyebrow { color:#A3E635; }
+.sec-flow .section-title .accent {
+  background:linear-gradient(90deg,#A3E635,#65a30d);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.sec-flow .flow-node { border-color:rgba(163,230,53,.4); }
+.sec-flow .flow-wrap.active .flow-node { border-color:#A3E635; box-shadow:0 0 14px rgba(163,230,53,.6); }
+.sec-flow .flow-step small { color:#A3E635; }
+.sec-flow .flow-line { background:linear-gradient(to bottom,#A3E635,rgba(163,230,53,.06)); }
+
+/* Analyze 섹션 — 청록-그린 */
+.sec-analyze .section-eyebrow { color:#34d399; }
+.sec-analyze .section-title .accent {
+  background:linear-gradient(90deg,#34d399,#059669);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.sec-analyze .analysis-label { color:#34d399; }
+.sec-analyze .progress-fill { background:linear-gradient(90deg,#065f46,#34d399,#6ee7b7); }
+.sec-analyze .stat-val { color:#34d399; }
+.sec-analyze .analysis-card:hover { border-color:rgba(52,211,153,.4); box-shadow:0 0 36px rgba(52,211,153,.12); }
+
+/* Insight 섹션 — 그린-옐로우 */
+.sec-insight .section-eyebrow { color:#BEF264; }
+.sec-insight .section-title .accent {
+  background:linear-gradient(90deg,#BEF264,#84cc16);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.sec-insight .insight-label { color:#BEF264; }
+.sec-insight .insight-card::before { background:linear-gradient(to bottom,#BEF264,transparent); }
+.sec-insight .insight-card h3 b {
+  background:linear-gradient(90deg,#BEF264,#84cc16);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.sec-insight .insight-stream-label { color:#BEF264; }
+
+/* App 섹션 — 소프트 그린 */
+.sec-app .app-section-eyebrow { color:#86efac; }
+.sec-app .app-section-title .accent {
+  background:linear-gradient(90deg,#86efac,#4ADE80);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 </style>
 </head>
@@ -915,7 +998,7 @@ h1{
   </section>
 
   <!-- SIGNALS -->
-  <section class="section">
+  <section class="section sec-signal">
     <div class="section-eyebrow reveal">BEHAVIORAL SIGNAL COLLECTION</div>
     <h2 class="section-title reveal reveal-delay-1">
       AI가 읽는 것은<br><span class="accent">시간이 아니라 행동입니다.</span>
@@ -944,7 +1027,7 @@ h1{
           <h3>App Activity</h3>
           <p>어떤 활동이 반복되고, 어떻게 연결되는지 분석합니다.</p>
         </div>
-        <div class="signal-mini-wave"><canvas data-wave-color="57,217,138" data-wave-speed="0.8"></canvas></div>
+        <div class="signal-mini-wave"><canvas data-wave-color="74,222,128" data-wave-speed="0.8"></canvas></div>
         <div class="signal-arrow">→</div>
       </div>
 
@@ -959,7 +1042,7 @@ h1{
           <h3>Touch Pattern</h3>
           <p>반복 행동과 반응 패턴을 분석합니다.</p>
         </div>
-        <div class="signal-mini-wave"><canvas data-wave-color="100,230,160" data-wave-speed="1.2"></canvas></div>
+        <div class="signal-mini-wave"><canvas data-wave-color="163,230,53" data-wave-speed="1.2"></canvas></div>
         <div class="signal-arrow">→</div>
       </div>
 
@@ -974,7 +1057,7 @@ h1{
           <h3>Motion Signal</h3>
           <p>기기 움직임과 안정성 신호를 통해 사용 상황의 변화를 탐지합니다.</p>
         </div>
-        <div class="signal-mini-wave"><canvas data-wave-color="57,217,138" data-wave-speed="1.6"></canvas></div>
+        <div class="signal-mini-wave"><canvas data-wave-color="74,222,128" data-wave-speed="1.6"></canvas></div>
         <div class="signal-arrow">→</div>
       </div>
 
@@ -989,7 +1072,7 @@ h1{
           <h3>Eye Tracking <span style="font-size:12px;color:var(--mint);font-family:'Space Mono',monospace;letter-spacing:.08em">→ Attention Signal</span></h3>
           <p>시선, 체류, 반응 신호를 통해 주의 흐름을 분석합니다.</p>
         </div>
-        <div class="signal-mini-wave"><canvas data-wave-color="46,204,113" data-wave-speed="0.6"></canvas></div>
+        <div class="signal-mini-wave"><canvas data-wave-color="52,211,153" data-wave-speed="0.6"></canvas></div>
         <div class="signal-arrow">→</div>
       </div>
 
@@ -997,7 +1080,7 @@ h1{
   </section>
 
   <!-- FLOW -->
-  <section class="section">
+  <section class="section sec-flow">
     <div class="section-eyebrow reveal">AI ENGINE</div>
     <h2 class="section-title reveal reveal-delay-1">AI Behavioral<br><span class="accent">Engine Flow</span></h2>
     <p class="section-desc reveal reveal-delay-2">
@@ -1042,7 +1125,7 @@ h1{
   </section>
 
   <!-- ANALYZE -->
-  <section class="section">
+  <section class="section sec-analyze">
     <div class="section-eyebrow reveal">ANALYSIS OUTPUT</div>
     <h2 class="section-title reveal reveal-delay-1">What We<br><span class="accent">Analyze</span></h2>
 
@@ -1128,7 +1211,7 @@ h1{
   </section>
 
   <!-- INSIGHTS -->
-  <section class="section">
+  <section class="section sec-insight">
     <div class="section-eyebrow reveal">GENERATED OUTPUT</div>
     <h2 class="section-title reveal reveal-delay-1">AI Generated<br><span class="accent">Parent Insight</span></h2>
     <p class="section-desc reveal reveal-delay-2">
@@ -1161,7 +1244,7 @@ h1{
 
 
   <!-- APP SCREENS -->
-  <section class="section app-section">
+  <section class="section app-section sec-app">
     <div class="app-section-eyebrow reveal">MOMENT APP · 실제 화면</div>
     <h2 class="app-section-title reveal reveal-delay-1">
       아이의 하루가<br><span class="accent">이렇게 보입니다.</span>
@@ -1224,7 +1307,7 @@ h1{
       r:Math.random()*2.2+0.5,
       a:Math.random()*0.55+0.15,
       pulse:Math.random()*Math.PI*2,
-      col: Math.random()>.5 ? '57,217,138' : '100,230,160'
+      col: Math.random()>.5 ? '74,222,128' : '100,230,160'
     });
   }
   resize(); window.addEventListener('resize', resize);
@@ -1246,7 +1329,7 @@ h1{
         const dist=Math.sqrt(dx*dx+dy*dy);
         if(dist<80){
           x.beginPath(); x.moveTo(dots[i].x,dots[i].y); x.lineTo(dots[j].x,dots[j].y);
-          x.strokeStyle=`rgba(57,217,138,${(1-dist/80)*0.18})`; x.lineWidth=1; x.stroke();
+          x.strokeStyle=`rgba(74,222,128,${(1-dist/80)*0.18})`; x.lineWidth=1; x.stroke();
         }
       }
     }
@@ -1283,8 +1366,8 @@ h1{
       sum+=bars[i];
       const bh = bars[i]*h*0.9;
       const grd = x.createLinearGradient(0,h,0,h-bh);
-      grd.addColorStop(0,'rgba(57,217,138,0.85)');
-      grd.addColorStop(1,'rgba(100,230,160,0.4)');
+      grd.addColorStop(0,'rgba(74,222,128,0.85)');
+      grd.addColorStop(1,'rgba(74,222,128,0.4)');
       x.fillStyle=grd;
       x.fillRect(i*(bw+1), h-bh, bw, bh);
     });
@@ -1299,7 +1382,7 @@ document.querySelectorAll('.signal-mini-wave canvas').forEach((c, idx)=>{
   function resize(){ c.width=c.offsetWidth||56; c.height=c.offsetHeight||30; }
   resize();
   const x=c.getContext('2d');
-  const col=c.dataset.waveColor||'57,217,138';
+  const col=c.dataset.waveColor||'74,222,128';
   const spd=parseFloat(c.dataset.waveSpeed||'1');
   let t=idx*1.4;
   (function draw(){
@@ -1362,14 +1445,14 @@ document.querySelectorAll('.signal-mini-wave canvas').forEach((c, idx)=>{
         const a=i/n*Math.PI*2-Math.PI/2, rr=r*ring/4;
         i===0?x.moveTo(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr):x.lineTo(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr);
       }
-      x.closePath(); x.strokeStyle=`rgba(57,217,138,${0.06+ring*0.025})`; x.lineWidth=1; x.stroke();
+      x.closePath(); x.strokeStyle=`rgba(74,222,128,${0.06+ring*0.025})`; x.lineWidth=1; x.stroke();
       // 링 안쪽 채우기 (가장 안쪽만)
-      if(ring===1){ x.fillStyle='rgba(57,217,138,0.04)'; x.fill(); }
+      if(ring===1){ x.fillStyle='rgba(74,222,128,0.04)'; x.fill(); }
     }
     for(let i=0;i<n;i++){
       const a=i/n*Math.PI*2-Math.PI/2;
       x.beginPath(); x.moveTo(cx,cy); x.lineTo(cx+Math.cos(a)*r,cy+Math.sin(a)*r);
-      x.strokeStyle='rgba(57,217,138,0.13)'; x.lineWidth=1; x.stroke();
+      x.strokeStyle='rgba(74,222,128,0.13)'; x.lineWidth=1; x.stroke();
     }
     const pulse=1+Math.sin(t)*0.045;
     // 두 번째 레이어 (약간 다른 데이터로 깊이감)
@@ -1379,8 +1462,8 @@ document.querySelectorAll('.signal-mini-wave canvas').forEach((c, idx)=>{
       const v=vals[i]*0.6*r;
       i===0?x.moveTo(cx+Math.cos(a)*v,cy+Math.sin(a)*v):x.lineTo(cx+Math.cos(a)*v,cy+Math.sin(a)*v);
     }
-    x.closePath(); x.fillStyle='rgba(57,217,138,0.08)'; x.fill();
-    x.strokeStyle='rgba(57,217,138,0.3)'; x.lineWidth=1; x.stroke();
+    x.closePath(); x.fillStyle='rgba(74,222,128,0.08)'; x.fill();
+    x.strokeStyle='rgba(74,222,128,0.3)'; x.lineWidth=1; x.stroke();
     // 메인 레이어
     x.beginPath();
     for(let i=0;i<n;i++){
@@ -1389,16 +1472,16 @@ document.querySelectorAll('.signal-mini-wave canvas').forEach((c, idx)=>{
     }
     x.closePath();
     const g=x.createRadialGradient(cx,cy,0,cx,cy,r);
-    g.addColorStop(0,'rgba(57,217,138,0.28)'); g.addColorStop(1,'rgba(46,204,113,0.04)');
+    g.addColorStop(0,'rgba(74,222,128,0.28)'); g.addColorStop(1,'rgba(22,101,52,0.04)');
     x.fillStyle=g; x.fill();
-    x.strokeStyle='rgba(57,217,138,0.9)'; x.lineWidth=1.8; x.stroke();
+    x.strokeStyle='rgba(74,222,128,0.9)'; x.lineWidth=1.8; x.stroke();
     for(let i=0;i<n;i++){
       const a=i/n*Math.PI*2-Math.PI/2, v=vals[i]*pulse*r;
       x.beginPath(); x.arc(cx+Math.cos(a)*v,cy+Math.sin(a)*v,3.5,0,Math.PI*2);
-      x.shadowColor='rgba(57,217,138,0.9)'; x.shadowBlur=12;
-      x.fillStyle='#39D98A'; x.fill(); x.shadowBlur=0;
+      x.shadowColor='rgba(74,222,128,0.9)'; x.shadowBlur=12;
+      x.fillStyle='#4ADE80'; x.fill(); x.shadowBlur=0;
     }
-    x.font='8px Space Mono,monospace'; x.fillStyle='rgba(57,217,138,0.75)'; x.textAlign='center';
+    x.font='8px Space Mono,monospace'; x.fillStyle='rgba(74,222,128,0.75)'; x.textAlign='center';
     for(let i=0;i<n;i++){
       const a=i/n*Math.PI*2-Math.PI/2;
       x.fillText(labels[i], cx+Math.cos(a)*(r+20), cy+Math.sin(a)*(r+20)+3);
@@ -1414,9 +1497,9 @@ document.querySelectorAll('.signal-mini-wave canvas').forEach((c, idx)=>{
 ───────────────────────────────────────── */
 document.querySelectorAll('.card-trend canvas').forEach((c,idx)=>{
   const vals=[92,78,84,71];
-  const colors=['57,217,138','100,230,160','57,217,138','46,204,113'];
+  const colors=['74,222,128','100,230,160','74,222,128','46,204,113'];
   const pct=vals[idx]||80;
-  const col=colors[idx]||'57,217,138';
+  const col=colors[idx]||'74,222,128';
   function resize(){ c.width=c.offsetWidth||300; c.height=40; }
   resize();
   const x=c.getContext('2d');
@@ -1450,7 +1533,7 @@ document.querySelectorAll('.card-trend canvas').forEach((c,idx)=>{
   const lastBx=5+(data.length-1)*(bw*2);
   x.beginPath(); x.arc(lastBx+bw/2,h-lastBh-2,3,0,Math.PI*2);
   x.shadowColor=`rgba(${col},0.9)`; x.shadowBlur=8;
-  x.fillStyle=`#39D98A`; x.fill(); x.shadowBlur=0;
+  x.fillStyle=`#4ADE80`; x.fill(); x.shadowBlur=0;
 });
 
 /* ─────────────────────────────────────────
@@ -1481,7 +1564,7 @@ document.querySelectorAll('.card-trend canvas').forEach((c,idx)=>{
     x.clearRect(0,0,w,h);
     // 중앙선
     x.beginPath(); x.moveTo(0,mid); x.lineTo(w,mid);
-    x.strokeStyle='rgba(57,217,138,0.1)'; x.lineWidth=1; x.stroke();
+    x.strokeStyle='rgba(74,222,128,0.1)'; x.lineWidth=1; x.stroke();
     // ECG 라인
     x.beginPath();
     history.forEach((v,i)=>{
@@ -1489,17 +1572,17 @@ document.querySelectorAll('.card-trend canvas').forEach((c,idx)=>{
       i===0?x.moveTo(i,py):x.lineTo(i,py);
     });
     const g=x.createLinearGradient(0,0,w,0);
-    g.addColorStop(0,'rgba(57,217,138,0)');
-    g.addColorStop(0.7,'rgba(57,217,138,0.8)');
-    g.addColorStop(1,'rgba(100,230,160,1)');
+    g.addColorStop(0,'rgba(74,222,128,0)');
+    g.addColorStop(0.7,'rgba(74,222,128,0.8)');
+    g.addColorStop(1,'rgba(74,222,128,1)');
     x.strokeStyle=g; x.lineWidth=1.8; x.stroke();
     // 현재 포인트 글로우
     if(history.length>0){
       const lv=history[history.length-1];
       const lx=history.length-1, ly=mid-lv*mid*0.75;
       x.beginPath(); x.arc(lx,ly,3,0,Math.PI*2);
-      x.shadowColor='rgba(57,217,138,1)'; x.shadowBlur=14;
-      x.fillStyle='#39D98A'; x.fill(); x.shadowBlur=0;
+      x.shadowColor='rgba(74,222,128,1)'; x.shadowBlur=14;
+      x.fillStyle='#4ADE80'; x.fill(); x.shadowBlur=0;
     }
     t+=0.055; requestAnimationFrame(draw);
   }
@@ -1544,7 +1627,7 @@ class Particle{
     this.vx=(Math.random()-.5)*.22;
     this.vy=(Math.random()-.5)*.22;
     this.r=Math.random()*1.4+.3;
-    this.alpha=Math.random()*.5+.1;
+    this.alpha=Math.random()*.55+.18;
     this.life=0;this.maxLife=200+Math.random()*300;
   }
   update(){
@@ -1553,7 +1636,7 @@ class Particle{
   }
   draw(){
     ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(57,217,138,${this.alpha})`;ctx.fill();
+    ctx.fillStyle=`rgba(74,222,128,${this.alpha})`;ctx.fill();
   }
 }
 
@@ -1562,7 +1645,7 @@ for(let i=0;i<80;i++) particles.push(new Particle());
 function drawGrid(){
   ctx.clearRect(0,0,W,H);
   /* horizontal lines */
-  ctx.strokeStyle='rgba(57,217,138,.04)';ctx.lineWidth=1;
+  ctx.strokeStyle='rgba(74,222,128,.055)';ctx.lineWidth=1;
   for(let y=0;y<H;y+=80){
     ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();
   }
